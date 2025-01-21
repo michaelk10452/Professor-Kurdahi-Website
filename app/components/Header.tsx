@@ -25,7 +25,7 @@ export default function Header() {
           Fadi Kurdahi
         </h1>
         <ul className="flex space-x-4 md:space-x-6">
-          {["About", "Education", "Awards", "Research", "Publications", "Media", "Contact"].map((item) => (
+          {["About", "Appointments", "Education", "Awards", "Research", "Publications", "Media", "Contact"].map((item) => (
             <li key={item}>
               <Link
                 href={`#${item.toLowerCase()}`}

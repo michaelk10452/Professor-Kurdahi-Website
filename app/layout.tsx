@@ -5,8 +5,8 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Prof. Fadi Kurdahi - University of California, Irvine',
-  description: 'Official webpage of Professor Fadi Kurdahi, Director at the Center for Embedded and Cyber-physical Systems (CECS)',
+  title: 'Dr. Fadi Kurdahi',
+  description: 'Official webpage of Professor Fadi Kurdahi, Professor of Electrical Engineering and Computer Science at UC Irvine, Director at the Center for Embedded and Cyber-physical Systems (CECS)',
 }
 
 export default function RootLayout({

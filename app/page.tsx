@@ -66,7 +66,7 @@ export default function Home() {
                 <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-semibold">Professor</h3>
-                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, UC Irvine, 1998 – present</p>
+                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, 1998 – present</p>
                 </div>
               </div>
 
@@ -90,7 +90,7 @@ export default function Home() {
                 <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-semibold">Associate Dean for Graduate and Professional Studies</h3>
-                  <p className="text-gray-600">The Samueli School of Engineering, 2017 – 2022</p>
+                  <p className="text-gray-600">Henry Samueli School of Engineering, University of California, Irvine, 2017 – 2022</p>
                 </div>
               </div>
 
@@ -98,7 +98,7 @@ export default function Home() {
                 <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-semibold">Associate Professor</h3>
-                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, UC Irvine, 1993 – 1998</p>
+                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, 1993 – 1998</p>
                 </div>
               </div>
 
@@ -106,7 +106,7 @@ export default function Home() {
                 <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-semibold">Assistant Professor</h3>
-                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, UC Irvine, 1987 – 1993</p>
+                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, 1987 – 1993</p>
                 </div>
               </div>
             </div>
@@ -434,7 +434,7 @@ export default function Home() {
               </div>
               <div className="flex items-center mb-6">
                 <MapPin className="w-6 h-6 text-blue-600 mr-4" />
-                <p className="text-lg">Engineering Hall, Room 3409, UC Irvine</p>
+                <p className="text-lg">Engineering Hall, Room 3207, UC Irvine</p>
               </div>
               <div className="flex items-center mb-6">
                 <svg 
