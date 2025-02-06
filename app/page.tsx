@@ -2,56 +2,82 @@ import Header from "./components/Header"
 import Image from "next/image"
 import { Briefcase, Lightbulb, Mail, MapPin, GraduationCap, Award, Video, FileText, User } from "lucide-react"
 import PublicationsList from "./components/PublicationsList"
+import { Merriweather } from 'next/font/google'
+import { faGoogleScholar } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+<FontAwesomeIcon icon={faGoogleScholar} className="w-6 h-6 text-blue-600 mr-4" />
+
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  weight: ['700'],  // Using 700 (bold) since Merriweather's weight works well at this value
+  display: 'swap',
+});
+
 
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-grow">
-        <section
+      <section
           id="about"
-          className="min-h-screen flex items-center bg-gradient-to-br from-blue-600 to-purple-600 text-white"
+          className="min-h-screen flex items-center"
+          style={{ 
+            background: 'linear-gradient(125deg, #00386c 0%, #004c8c 35%, #001428 100%)'
+          }}
         >
-          <div className="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center">
-            <div className="md:w-1/3 mb-8 md:mb-0">
-              <Image
-                src="/fadi-kurdahi.png?height=400&width=400"
-                alt="Professor Fadi Kurdahi"
-                width={400}
-                height={400}
-                className="rounded-full shadow-lg"
-              />
-            </div>
-            <div className="md:w-2/3 md:pl-8">
-              <h2 className="text-5xl font-bold mb-6 animate-fade-in-up">Fadi Kurdahi</h2>
-              <p className="text-xl max-w-2xl animate-fade-in-up animation-delay-200">
-                  A faculty member in the{" "}
-                <a href="https://engineering.uci.edu/dept/eecs" className="text-white underline hover:text-gray-200">
-                  Department of Electrical Engineering and Computer Science
-                </a>{" "}
-                at UC Irvine since 1987, he currently serves as the Director of the{" "}
-                <a href="https://cecs.uci.edu" className="text-white underline hover:text-gray-200">
-                  Center for Embedded and Cyber-Physical Systems (CECS)
-                </a>.{" "}
-                  He also founded and leads the innovative and rapidly expanding{" "}
-                <a href="https://mecps.eecs.uci.edu" className="text-white underline hover:text-gray-200">
-                  Master of Embedded and Cyber-Physical Systems (MECPS)
-                </a>{" "}
-                program to address the growing demand for expertise in these fields.
-              </p>
-              <p className="text-xl max-w-2xl mt-4 animate-fade-in-up animation-delay-200">
-                His research spans VLSI system design, digital systems automation, and embedded and cyber-physical systems. From 2017 to 2022, he served as Associate Dean of the{" "}
-                <a href="https://engineering.uci.edu" className="text-white underline hover:text-gray-200">
-                  Samueli School of Engineering
-                </a>
-                , advancing its educational mission. He also holds a joint appointment in the{" "}
-                <a href="https://www.ics.uci.edu" className="text-white underline hover:text-gray-200">
-                  Donald Bren School of Information and Computer Sciences
-                </a>.
-              </p>
-              <p className="text-xl max-w-2xl mt-4 animate-fade-in-up animation-delay-200">
-                An IEEE and AAAS Fellow, Prof. Kurdahi earned his M.S. & Ph.D. in Computer Engineering from USC and his undergraduate degree from the American University of Beirut. He remains passionate about advancing engineering education and preparing students for the rapidly evolving challenges of embedded and cyber-physical systems.
-              </p>
+          <div className="container mx-auto px-4 py-20">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
+              <div className="md:col-span-4">
+                <div className="relative overflow-hidden shadow-lg border-4 rounded-full aspect-square w-full max-w-md mx-auto" style={{ borderColor: '#f6aa0d' }}>
+                  <Image
+                    src="/fadi-kurdahi.png?height=400&width=400"
+                    alt="Professor Fadi Kurdahi"
+                    layout="fill"
+                    objectFit="cover"
+                    className="transition-transform duration-300 hover:scale-102"
+                  />
+                </div>
+              </div>
+              <div className="md:col-span-8">
+                <h1 className={`text-3xl md:text-4xl mb-6 text-white ${merriweather.className}`}
+                    style={{ 
+                      letterSpacing: '0.01em'
+                    }}>
+                  Fadi Kurdahi
+                </h1>
+                <div className="space-y-6 text-gray-100">
+                  <p className="text-lg">
+                    A faculty member in the{" "}
+                    <a href="https://engineering.uci.edu/dept/eecs" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
+                      Department of Electrical Engineering and Computer Science
+                    </a>{" "}
+                    at UC Irvine since 1987, he currently serves as the Director of the{" "}
+                    <a href="https://cecs.uci.edu" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
+                      Center for Embedded and Cyber-Physical Systems (CECS)
+                    </a>.{" "}
+                    He also founded and leads the innovative and rapidly expanding{" "}
+                    <a href="https://mecps.eecs.uci.edu" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
+                      Master of Embedded and Cyber-Physical Systems (MECPS)
+                    </a>{" "}
+                    program to address the growing demand for expertise in these fields.
+                  </p>
+                  <p className="text-lg">
+                    His research spans VLSI system design, digital systems automation, and embedded and cyber-physical systems. From 2017 to 2022, he served as Associate Dean of the{" "}
+                    <a href="https://engineering.uci.edu" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
+                      Samueli School of Engineering
+                    </a>
+                    , advancing its educational mission. He also holds a joint appointment in the{" "}
+                    <a href="https://www.ics.uci.edu" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
+                      Donald Bren School of Information and Computer Sciences
+                    </a>.
+                  </p>
+                  <p className="text-lg">
+                    An IEEE and AAAS Fellow, Prof. Kurdahi earned his M.S. & Ph.D. in Computer Engineering from USC and his undergraduate degree from the American University of Beirut. He remains passionate about advancing engineering education and preparing students for the rapidly evolving challenges of embedded and cyber-physical systems.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -451,6 +477,17 @@ export default function Home() {
                   className="text-lg text-blue-600 hover:text-blue-800 transition-colors"
                 >
                   linkedin.com/in/fadikurdahi
+                </a>
+              </div>
+              <div className="flex items-center mb-6">
+                <FontAwesomeIcon icon={faGoogleScholar} className="w-6 h-6 text-blue-600 mr-4" />
+                <a 
+                  href="https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-lg text-blue-600 hover:text-blue-800 transition-colors"
+                >
+                  Google Scholar Profile
                 </a>
               </div>
             </div>

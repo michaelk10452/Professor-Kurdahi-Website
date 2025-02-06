@@ -29,7 +29,7 @@ export default function PublicationsList() {
   const [error, setError] = useState<string | null>(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
-  const [sortBy, setSortBy] = useState<SortOption>("recent")
+  const [sortBy, setSortBy] = useState<SortOption>("cited")
 
   const fetchPublications = async (page: number, sort: SortOption) => {
     try {
@@ -104,7 +104,7 @@ export default function PublicationsList() {
   return (
     <div>
       <Tabs 
-        defaultValue="recent" 
+        defaultValue="cited" 
         className="w-full"
         onValueChange={(value) => setSortBy(value as SortOption)}
       >
