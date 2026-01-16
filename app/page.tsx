@@ -49,7 +49,7 @@ export default function Home() {
                 </h1>
                 <div className="space-y-6 text-gray-100">
                   <p className="text-lg">
-                    A faculty member in the{" "}
+                    A Distinguished Professor in the{" "}
                     <a href="https://engineering.uci.edu/dept/eecs" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
                       Department of Electrical Engineering and Computer Science
                     </a>{" "}
@@ -91,7 +91,7 @@ export default function Home() {
               <div className="flex items-start">
                 <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-xl font-semibold">Professor</h3>
+                  <h3 className="text-xl font-semibold">Distinguished Professor</h3>
                   <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, 1998 – present</p>
                 </div>
               </div>
