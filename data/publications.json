@@ -1,0 +1,14 @@
+{
+  "publications": [
+    {
+      "id": 1,
+      "title": "Example Publication Title - Replace with Actual Data",
+      "authors": "F. Kurdahi, et al.",
+      "venue": "IEEE Transactions on VLSI Systems",
+      "year": 2024,
+      "citations": 100,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    }
+  ],
+  "lastUpdated": "2025-01-17T00:00:00Z"
+}
