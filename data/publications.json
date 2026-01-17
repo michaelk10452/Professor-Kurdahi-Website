@@ -2,15 +2,24 @@
   "mostRecent": [
     {
       "id": 1,
-      "title": "SoftmAP: Software-Hardware Co-design for Integer-Only Softmax on Associative Processors",
-      "authors": "F. Kurdahi, et al.",
-      "venue": "IEEE Conference Proceedings",
+      "title": "BF-IMNA: A Bit Fluid In-Memory Neural Architecture for Neural Network Acceleration",
+      "authors": "Mariam Rakka, Rachid Karami, Ahmed M. Eltawil, Mohammed E. Fouda, Fadi Kurdahi",
+      "venue": "ArXiv preprint",
       "year": 2024,
-      "citations": 5,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+      "citations": 2,
+      "link": "https://arxiv.org/abs/2411.01417"
     },
     {
       "id": 2,
+      "title": "SoftmAP: Software-Hardware Co-design for Integer-Only Softmax on Associative Processors",
+      "authors": "Mariam Rakka, Jinhao Li, Guohao Dai, Ahmed Eltawil, Mohammed E. Fouda, Fadi Kurdahi",
+      "venue": "ArXiv preprint",
+      "year": 2024,
+      "citations": 3,
+      "link": "https://arxiv.org/abs/2411.17847"
+    },
+    {
+      "id": 3,
       "title": "Resistive Neural Hardware Accelerators",
       "authors": "F. Kurdahi, et al.",
       "venue": "Proceedings of the IEEE",
@@ -19,7 +28,7 @@
       "link": "https://ieeexplore.ieee.org/author/37267909800"
     },
     {
-      "id": 3,
+      "id": 4,
       "title": "DT2CAM: A Decision Tree to Content Addressable Memory Framework",
       "authors": "F. Kurdahi, et al.",
       "venue": "IEEE Transactions on Emerging Topics in Computing",
@@ -28,21 +37,12 @@
       "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
     },
     {
-      "id": 4,
+      "id": 5,
       "title": "Information Processing Factory 2.0 - Self-awareness for Autonomous Collaborative Systems",
       "authors": "F. Kurdahi, et al.",
       "venue": "Design, Automation & Test in Europe Conference (DATE)",
       "year": 2023,
       "citations": 12,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
-    },
-    {
-      "id": 5,
-      "title": "An Accurate Non-accelerometer-based PPG Motion Artifact Removal Technique using CycleGAN",
-      "authors": "F. Kurdahi, et al.",
-      "venue": "ACM Transactions on Computing for Healthcare",
-      "year": 2023,
-      "citations": 15,
       "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
     }
   ],
@@ -93,6 +93,6 @@
       "link": "https://dl.acm.org/doi/10.1145/3232195.3232226"
     }
   ],
-  "lastUpdated": "2025-01-17T00:00:00Z",
+  "lastUpdated": "2026-01-17T00:00:00Z",
   "note": "Top 5 most recent and top 5 most cited publications from Professor Fadi Kurdahi's research. This data is automatically updated every 6 months via GitHub Action."
 }
