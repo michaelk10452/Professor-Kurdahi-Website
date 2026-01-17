@@ -32,10 +32,13 @@ export default function Home() {
               <div className="md:col-span-4">
                 <div className="relative overflow-hidden shadow-lg border-4 rounded-full aspect-square w-full max-w-md mx-auto" style={{ borderColor: '#f6aa0d' }}>
                   <Image
-                    src="/fadi-kurdahi.png?height=400&width=400"
+                    src="/fadi-kurdahi.png"
                     alt="Professor Fadi Kurdahi"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    quality={100}
+                    priority
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    style={{ objectFit: 'cover' }}
                     className="transition-transform duration-300 hover:scale-102"
                   />
                 </div>
@@ -91,6 +94,14 @@ export default function Home() {
               <div className="flex items-start">
                 <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
                 <div>
+                  <h3 className="text-xl font-semibold">Distinguished Professor</h3>
+                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, 2025 – present</p>
+                </div>
+              </div>
+
+              <div className="flex items-start">
+                <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
+                <div>
                   <h3 className="text-xl font-semibold">Director, Center for Embedded & Cyber-physical Systems (CECS)</h3>
                   <p className="text-gray-600">University of California, Irvine, 2012 – present</p>
                 </div>
@@ -101,14 +112,6 @@ export default function Home() {
                 <div>
                   <h3 className="text-xl font-semibold">Director, Professional Master of Embedded & Cyber-Physical Systems</h3>
                   <p className="text-gray-600">University of California, Irvine, 2022 – present</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Distinguished Professor</h3>
-                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, 2025 – present</p>
                 </div>
               </div>
 
