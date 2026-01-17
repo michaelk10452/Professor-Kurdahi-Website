@@ -353,6 +353,19 @@ export default function Home() {
               <h3 className="text-2xl font-semibold mb-6"> Articles & Reviews</h3>
               <div className="space-y-4">
                 <a
+                  href="https://www.cecs.uci.edu/event/prof-fadi-kurdahi-honored-at-waaaub-orange-county-chapter-annual-dinner/"
+                  className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
+                >
+                  <FileText className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 group-hover:text-blue-700" />
+                  <div>
+                    <span className="text-blue-600 group-hover:text-blue-700 block mb-1">
+                      Prof. Fadi Kurdahi Honored at WAAAUB Orange County Chapter Annual Dinner
+                    </span>
+                    <span className="text-sm text-gray-600">UCI CECS • 2025</span>
+                  </div>
+                </a>
+
+                <a
                   href="https://elpais.com/cat/2021/05/10/tecnologia/1620657621_446415.html"
                   className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
                 >
