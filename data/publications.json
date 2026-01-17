@@ -1,0 +1,98 @@
+{
+  "mostRecent": [
+    {
+      "id": 1,
+      "title": "BF-IMNA: A Bit Fluid In-Memory Neural Architecture for Neural Network Acceleration",
+      "authors": "Mariam Rakka, Rachid Karami, Ahmed M. Eltawil, Mohammed E. Fouda, Fadi Kurdahi",
+      "venue": "ArXiv preprint",
+      "year": 2024,
+      "citations": 2,
+      "link": "https://arxiv.org/abs/2411.01417"
+    },
+    {
+      "id": 2,
+      "title": "SoftmAP: Software-Hardware Co-design for Integer-Only Softmax on Associative Processors",
+      "authors": "Mariam Rakka, Jinhao Li, Guohao Dai, Ahmed Eltawil, Mohammed E. Fouda, Fadi Kurdahi",
+      "venue": "ArXiv preprint",
+      "year": 2024,
+      "citations": 3,
+      "link": "https://arxiv.org/abs/2411.17847"
+    },
+    {
+      "id": 3,
+      "title": "Resistive Neural Hardware Accelerators",
+      "authors": "F. Kurdahi, et al.",
+      "venue": "Proceedings of the IEEE",
+      "year": 2023,
+      "citations": 42,
+      "link": "https://ieeexplore.ieee.org/author/37267909800"
+    },
+    {
+      "id": 4,
+      "title": "DT2CAM: A Decision Tree to Content Addressable Memory Framework",
+      "authors": "F. Kurdahi, et al.",
+      "venue": "IEEE Transactions on Emerging Topics in Computing",
+      "year": 2023,
+      "citations": 18,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 5,
+      "title": "Information Processing Factory 2.0 - Self-awareness for Autonomous Collaborative Systems",
+      "authors": "F. Kurdahi, et al.",
+      "venue": "Design, Automation & Test in Europe Conference (DATE)",
+      "year": 2023,
+      "citations": 12,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    }
+  ],
+  "mostCited": [
+    {
+      "id": 1,
+      "title": "MorphoSys: An Integrated Reconfigurable System for Data-Parallel and Computation-Intensive Applications",
+      "authors": "H. Singh, M.-H. Lee, G. Lu, F.J. Kurdahi, N. Bagherzadeh, E.M. Chaves Filho",
+      "venue": "IEEE Transactions on Computers",
+      "year": 2000,
+      "citations": 772,
+      "link": "https://dl.acm.org/doi/10.1109/12.859540"
+    },
+    {
+      "id": 2,
+      "title": "REAL: A Program for REgister ALlocation",
+      "authors": "F.J. Kurdahi, A.C. Parker",
+      "venue": "24th Design Automation Conference (DAC)",
+      "year": 1987,
+      "citations": 284,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 3,
+      "title": "Techniques for Area Estimation of VLSI Layouts",
+      "authors": "F.J. Kurdahi, A.C. Parker",
+      "venue": "IEEE Transactions on Computer-Aided Design",
+      "year": 1989,
+      "citations": 198,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 4,
+      "title": "Combined Topological and Functionality Based Delay Estimation Using a Layout-Driven Approach for High Level Applications",
+      "authors": "C. Ramachandran, F.J. Kurdahi",
+      "venue": "IEEE Transactions on Computer-Aided Design",
+      "year": 1994,
+      "citations": 156,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 5,
+      "title": "Overcoming Crossbar Nonidealities in Binary Neural Networks Through Learning",
+      "authors": "Mohammed E. Fouda, Jongeun Lee, Ahmed M. Eltawil, Fadi Kurdahi",
+      "venue": "IEEE/ACM International Symposium on Nanoscale Architectures (NANOARCH)",
+      "year": 2018,
+      "citations": 148,
+      "link": "https://dl.acm.org/doi/10.1145/3232195.3232226"
+    }
+  ],
+  "lastUpdated": "2026-01-17T00:00:00Z",
+  "note": "Top 5 most recent and top 5 most cited publications from Professor Fadi Kurdahi's research. This data is automatically updated every 6 months via GitHub Action."
+}
