@@ -1,5 +1,5 @@
 {
-  "publications": [
+  "mostRecent": [
     {
       "id": 1,
       "title": "SoftmAP: Software-Hardware Co-design for Integer-Only Softmax on Associative Processors",
@@ -44,99 +44,11 @@
       "year": 2023,
       "citations": 15,
       "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
-    },
+    }
+  ],
+  "mostCited": [
     {
-      "id": 6,
-      "title": "CAPTIVE: Constrained Adversarial Perturbations to Thwart IC Reverse Engineering",
-      "authors": "F. Kurdahi, et al.",
-      "venue": "Information Journal",
-      "year": 2023,
-      "citations": 8,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
-    },
-    {
-      "id": 7,
-      "title": "The Self-Aware Information Processing Factory Paradigm for Mixed-Critical Multiprocessing",
-      "authors": "F. Kurdahi, et al.",
-      "venue": "IEEE Transactions on Emerging Topics in Computing",
-      "year": 2022,
-      "citations": 28,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
-    },
-    {
-      "id": 8,
-      "title": "CFFNN: Cross Feature Fusion Neural Network for Collaborative Filtering",
-      "authors": "F. Kurdahi, et al.",
-      "venue": "IEEE Transactions on Knowledge and Data Engineering",
-      "year": 2022,
-      "citations": 35,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
-    },
-    {
-      "id": 9,
-      "title": "Accurate Prediction of ReRAM Crossbar Performance Under I-V Nonlinearity and IR Drop",
-      "authors": "F. Kurdahi, et al.",
-      "venue": "IEEE International Conference on Computer Design (ICCD)",
-      "year": 2022,
-      "citations": 22,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
-    },
-    {
-      "id": 10,
-      "title": "Predicting Failures in Embedded Systems Using Long Short-Term Inference",
-      "authors": "F. Kurdahi, et al.",
-      "venue": "IEEE Embedded Systems Letters",
-      "year": 2021,
-      "citations": 31,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
-    },
-    {
-      "id": 11,
-      "title": "Design Exploration of Sensing Techniques in 2T-2R Resistive Ternary CAMs",
-      "authors": "F. Kurdahi, et al.",
-      "venue": "IEEE Transactions on Circuits and Systems II: Express Briefs",
-      "year": 2021,
-      "citations": 25,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
-    },
-    {
-      "id": 12,
-      "title": "Cost- and Dataset-free Stuck-at Fault Mitigation for ReRAM-based Deep Learning Accelerators",
-      "authors": "F. Kurdahi, et al.",
-      "venue": "Design, Automation & Test in Europe Conference (DATE)",
-      "year": 2021,
-      "citations": 29,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
-    },
-    {
-      "id": 13,
-      "title": "Fast and Low-Cost Mitigation of ReRAM Variability for Deep Learning Applications",
-      "authors": "F. Kurdahi, et al.",
-      "venue": "IEEE International Conference on Computer Design (ICCD)",
-      "year": 2021,
-      "citations": 24,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
-    },
-    {
-      "id": 14,
-      "title": "Spiking neural networks for inference and learning: a memristor-based design perspective",
-      "authors": "Mohammed E. Fouda, Fadi Kurdahi, Ahmed Eltawil, Emre Neftci",
-      "venue": "Memristive Devices for Brain-Inspired Computing",
-      "year": 2020,
-      "citations": 87,
-      "link": "https://www.sciencedirect.com/science/article/abs/pii/B9780081027820000198"
-    },
-    {
-      "id": 15,
-      "title": "Overcoming Crossbar Nonidealities in Binary Neural Networks Through Learning",
-      "authors": "Mohammed E. Fouda, Jongeun Lee, Ahmed M. Eltawil, Fadi Kurdahi",
-      "venue": "IEEE/ACM International Symposium on Nanoscale Architectures (NANOARCH)",
-      "year": 2018,
-      "citations": 148,
-      "link": "https://dl.acm.org/doi/10.1145/3232195.3232226"
-    },
-    {
-      "id": 16,
+      "id": 1,
       "title": "MorphoSys: An Integrated Reconfigurable System for Data-Parallel and Computation-Intensive Applications",
       "authors": "H. Singh, M.-H. Lee, G. Lu, F.J. Kurdahi, N. Bagherzadeh, E.M. Chaves Filho",
       "venue": "IEEE Transactions on Computers",
@@ -145,25 +57,16 @@
       "link": "https://dl.acm.org/doi/10.1109/12.859540"
     },
     {
-      "id": 17,
-      "title": "Combined Topological and Functionality Based Delay Estimation Using a Layout-Driven Approach for High Level Applications",
-      "authors": "C. Ramachandran, F.J. Kurdahi",
-      "venue": "IEEE Transactions on Computer-Aided Design",
-      "year": 1994,
-      "citations": 156,
+      "id": 2,
+      "title": "REAL: A Program for REgister ALlocation",
+      "authors": "F.J. Kurdahi, A.C. Parker",
+      "venue": "24th Design Automation Conference (DAC)",
+      "year": 1987,
+      "citations": 284,
       "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
     },
     {
-      "id": 18,
-      "title": "Evaluating Layout Area Tradeoffs for High Level Applications",
-      "authors": "C. Ramachandran, F.J. Kurdahi",
-      "venue": "IEEE Transactions on VLSI Systems",
-      "year": 1993,
-      "citations": 142,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
-    },
-    {
-      "id": 19,
+      "id": 3,
       "title": "Techniques for Area Estimation of VLSI Layouts",
       "authors": "F.J. Kurdahi, A.C. Parker",
       "venue": "IEEE Transactions on Computer-Aided Design",
@@ -172,15 +75,24 @@
       "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
     },
     {
-      "id": 20,
-      "title": "REAL: A Program for REgister ALlocation",
-      "authors": "F.J. Kurdahi, A.C. Parker",
-      "venue": "24th Design Automation Conference (DAC)",
-      "year": 1987,
-      "citations": 284,
+      "id": 4,
+      "title": "Combined Topological and Functionality Based Delay Estimation Using a Layout-Driven Approach for High Level Applications",
+      "authors": "C. Ramachandran, F.J. Kurdahi",
+      "venue": "IEEE Transactions on Computer-Aided Design",
+      "year": 1994,
+      "citations": 156,
       "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 5,
+      "title": "Overcoming Crossbar Nonidealities in Binary Neural Networks Through Learning",
+      "authors": "Mohammed E. Fouda, Jongeun Lee, Ahmed M. Eltawil, Fadi Kurdahi",
+      "venue": "IEEE/ACM International Symposium on Nanoscale Architectures (NANOARCH)",
+      "year": 2018,
+      "citations": 148,
+      "link": "https://dl.acm.org/doi/10.1145/3232195.3232226"
     }
   ],
   "lastUpdated": "2025-01-17T00:00:00Z",
-  "note": "Real publications from Professor Fadi Kurdahi's research. This data will be automatically updated from Google Scholar when the GitHub Action runs (every 6 months or manually triggered)."
+  "note": "Top 5 most recent and top 5 most cited publications from Professor Fadi Kurdahi's research. This data is automatically updated every 6 months via GitHub Action."
 }

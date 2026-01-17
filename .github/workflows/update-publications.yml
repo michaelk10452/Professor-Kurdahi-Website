@@ -1,4 +1,4 @@
-name: Update Publications
+name: Publications Update Reminder
 
 on:
   schedule:
@@ -7,29 +7,53 @@ on:
   workflow_dispatch: # Allow manual trigger
 
 jobs:
-  update-publications:
+  create-reminder-issue:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: Create Reminder Issue
+        uses: actions/github-script@v7
         with:
-          python-version: '3.11'
+          script: |
+            const currentDate = new Date().toISOString().split('T')[0];
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `📚 Publications Update Reminder - ${currentDate}`,
+              body: `## Time to Update Publications!
 
-      - name: Install dependencies
-        run: |
-          pip install scholarly
+            It's been 6 months since the last update. Please update the publications data.
 
-      - name: Update publications
-        run: |
-          python scripts/update_publications.py
+            ### Steps to Update:
 
-      - name: Commit and push if changed
-        run: |
-          git config --global user.name 'GitHub Action'
-          git config --global user.email 'action@github.com'
-          git add data/publications.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update publications data" && git push)
+            1. Visit [Google Scholar Profile](https://scholar.google.com/citations?user=AF8zRPwAAAAJ)
+            2. Identify the **5 most recent** publications (sort by year)
+            3. Identify the **5 most cited** publications (sort by citations)
+            4. Edit \`data/publications.json\`:
+               - Update the \`mostRecent\` array
+               - Update the \`mostCited\` array
+               - Update \`lastUpdated\` to today's date
+            5. Commit and push:
+               \`\`\`bash
+               git add data/publications.json
+               git commit -m "Update publications data - ${currentDate}"
+               git push
+               \`\`\`
+
+            ### Need Help?
+
+            Run the helper script for instructions:
+            \`\`\`bash
+            cd scripts
+            node update_publications.js
+            \`\`\`
+
+            Or see: \`scripts/README.md\` for detailed instructions.
+
+            ---
+            **Close this issue after updating the publications.**`,
+              labels: ['publications', 'maintenance']
+            });
+            console.log(`Created issue #${issue.data.number}`)

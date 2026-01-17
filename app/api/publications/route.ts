@@ -13,14 +13,9 @@ export async function GET(request: Request) {
     const filePath = join(process.cwd(), "data", "publications.json")
     const fileContent = readFileSync(filePath, "utf-8")
     const jsonData = JSON.parse(fileContent)
-    let publications = jsonData.publications
 
-    // Apply sorting based on the sort parameter
-    if (sort === "cited") {
-      publications = publications.sort((a: any, b: any) => b.citations - a.citations)
-    } else {
-      publications = publications.sort((a: any, b: any) => b.year - a.year)
-    }
+    // Select the appropriate category based on sort parameter
+    let publications = sort === "cited" ? jsonData.mostCited : jsonData.mostRecent
 
     // Apply pagination
     const startIndex = (page - 1) * pageSize

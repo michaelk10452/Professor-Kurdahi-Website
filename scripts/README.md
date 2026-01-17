@@ -1,59 +1,83 @@
 # Publications Update Scripts
 
-This directory contains scripts to automatically update the publications data from Google Scholar.
+This directory contains tools for updating the publications data displayed on the website.
 
 ## How It Works
 
-The publications system uses a static JSON file (`data/publications.json`) that is automatically updated every 6 months using a GitHub Action.
+The publications system uses a static JSON file (`data/publications.json`) that contains:
+- **Top 5 Most Recent Publications** - Sorted by year
+- **Top 5 Most Cited Publications** - Sorted by citation count
 
-### Components
+## File Structure
 
-1. **`update_publications.py`** - Python script that fetches publications from Google Scholar
-2. **`requirements.txt`** - Python dependencies for the update script
-3. **`.github/workflows/update-publications.yml`** - GitHub Action that runs the script every 6 months
+```json
+{
+  "mostRecent": [ ... 5 publications ... ],
+  "mostCited": [ ... 5 publications ... ],
+  "lastUpdated": "2025-01-17T00:00:00Z",
+  "note": "Description"
+}
+```
 
-## Manual Update
+## Manual Update Process
 
-To manually update the publications data:
+### Option 1: Run the Helper Script
 
-1. Install Python dependencies:
-   ```bash
-   cd scripts
-   pip install -r requirements.txt
-   ```
+```bash
+cd scripts
+node update_publications.js
+```
 
-2. Run the update script:
-   ```bash
-   python update_publications.py
-   ```
+This will display instructions and current status.
 
-3. Commit and push the updated `data/publications.json` file:
+### Option 2: Direct Update
+
+1. **Visit Google Scholar Profile:**
+   - URL: https://scholar.google.com/citations?user=AF8zRPwAAAAJ
+
+2. **Identify Publications:**
+   - Sort by year → Note the 5 most recent publications
+   - Sort by citations → Note the 5 most cited publications
+
+3. **Update JSON File:**
+   - Edit `data/publications.json`
+   - Update the `mostRecent` array with the 5 most recent publications
+   - Update the `mostCited` array with the 5 most cited publications
+   - Update `lastUpdated` to current date (ISO format)
+
+4. **Commit Changes:**
    ```bash
    git add data/publications.json
    git commit -m "Update publications data"
    git push
    ```
 
-## Automatic Updates
+## Publication Format
 
-The GitHub Action runs automatically:
-- **Schedule**: Every 6 months (January 1st and July 1st at midnight UTC)
-- **Manual trigger**: Go to Actions tab → "Update Publications" → "Run workflow"
+Each publication should have this structure:
 
-## Configuration
-
-To change the Google Scholar author ID, edit the `scholar_id` parameter in `update_publications.py`:
-
-```python
-publications = fetch_publications(scholar_id="YOUR_SCHOLAR_ID")
+```json
+{
+  "id": 1,
+  "title": "Paper Title",
+  "authors": "Author Names",
+  "venue": "Conference/Journal Name",
+  "year": 2024,
+  "citations": 42,
+  "link": "https://link-to-paper.com"
+}
 ```
 
-You can find the Scholar ID in the Google Scholar profile URL:
-`https://scholar.google.com/citations?user=AF8zRPwAAAAJ` → ID is `AF8zRPwAAAAJ`
+## Reminder Schedule
 
-## Troubleshooting
+Update publications every **6 months** (January & July):
+- The GitHub Action creates a reminder issue automatically
+- Follow the manual update process above
+- Close the issue when complete
 
-If the automatic update fails:
-1. Check the GitHub Actions logs for error messages
-2. Google Scholar may have rate limits - try running manually later
-3. Verify the Scholar ID is correct
+## Future Enhancements
+
+An automated fetching system is planned for future implementation using:
+- Semantic Scholar API (free, no auth required)
+- OpenAlex API (open access publication database)
+- Custom scraping with proper rate limiting
