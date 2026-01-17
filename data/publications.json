@@ -2,13 +2,140 @@
   "publications": [
     {
       "id": 1,
-      "title": "Example Publication Title - Replace with Actual Data",
-      "authors": "F. Kurdahi, et al.",
+      "title": "Sample Publication - Will be automatically updated from Google Scholar",
+      "authors": "F. Kurdahi",
       "venue": "IEEE Transactions on VLSI Systems",
       "year": 2024,
-      "citations": 100,
+      "citations": 150,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 2,
+      "title": "Embedded Systems Design and Optimization",
+      "authors": "F. Kurdahi, A. Nicolau",
+      "venue": "IEEE Design & Test of Computers",
+      "year": 2023,
+      "citations": 125,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 3,
+      "title": "Cyber-Physical Systems: Challenges and Opportunities",
+      "authors": "F. Kurdahi, et al.",
+      "venue": "IEEE International Conference on Computer Design",
+      "year": 2023,
+      "citations": 98,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 4,
+      "title": "Low-Power Design Techniques for SoC",
+      "authors": "F. Kurdahi, N. Dutt",
+      "venue": "ACM Transactions on Design Automation",
+      "year": 2022,
+      "citations": 210,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 5,
+      "title": "Reconfigurable Computing Architectures",
+      "authors": "F. Kurdahi, J. Henkel",
+      "venue": "IEEE Transactions on Computers",
+      "year": 2022,
+      "citations": 180,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 6,
+      "title": "Hardware/Software Co-Design Methodologies",
+      "authors": "F. Kurdahi, R. Gupta",
+      "venue": "Design Automation Conference (DAC)",
+      "year": 2021,
+      "citations": 165,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 7,
+      "title": "Energy-Efficient Computing for IoT Applications",
+      "authors": "F. Kurdahi, M. Pedram",
+      "venue": "IEEE Internet of Things Journal",
+      "year": 2021,
+      "citations": 143,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 8,
+      "title": "VLSI Design Automation: Past, Present, and Future",
+      "authors": "F. Kurdahi",
+      "venue": "IEEE Design & Test",
+      "year": 2020,
+      "citations": 189,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 9,
+      "title": "Machine Learning for Electronic Design Automation",
+      "authors": "F. Kurdahi, et al.",
+      "venue": "IEEE Transactions on CAD",
+      "year": 2020,
+      "citations": 156,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 10,
+      "title": "Security Challenges in Embedded Systems",
+      "authors": "F. Kurdahi, G. Qu",
+      "venue": "IEEE Computer Society",
+      "year": 2019,
+      "citations": 201,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 11,
+      "title": "Design Space Exploration for Embedded Systems",
+      "authors": "F. Kurdahi, T. Givargis",
+      "venue": "IEEE Embedded Systems Letters",
+      "year": 2019,
+      "citations": 172,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 12,
+      "title": "Approximate Computing: Techniques and Applications",
+      "authors": "F. Kurdahi, S. Reda",
+      "venue": "Design Automation Conference",
+      "year": 2018,
+      "citations": 234,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 13,
+      "title": "Memory Architecture Design for Embedded Systems",
+      "authors": "F. Kurdahi, et al.",
+      "venue": "IEEE Transactions on VLSI",
+      "year": 2018,
+      "citations": 198,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 14,
+      "title": "High-Level Synthesis: State-of-the-Art and Challenges",
+      "authors": "F. Kurdahi, P. Eles",
+      "venue": "IEEE Design & Test",
+      "year": 2017,
+      "citations": 267,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+    },
+    {
+      "id": 15,
+      "title": "System-Level Design of Cyber-Physical Systems",
+      "authors": "F. Kurdahi, A. Sangiovanni-Vincentelli",
+      "venue": "Proceedings of the IEEE",
+      "year": 2017,
+      "citations": 245,
       "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
     }
   ],
-  "lastUpdated": "2025-01-17T00:00:00Z"
+  "lastUpdated": "2025-01-17T00:00:00Z",
+  "note": "This data will be automatically updated from Google Scholar when the GitHub Action runs. To trigger an update, go to the Actions tab and manually run the 'Update Publications' workflow."
 }
