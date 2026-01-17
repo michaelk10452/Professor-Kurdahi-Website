@@ -108,7 +108,7 @@ export default function Home() {
                 <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-semibold">Distinguished Professor</h3>
-                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, June 2025 – present</p>
+                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, 2025 – present</p>
                 </div>
               </div>
 
@@ -116,7 +116,7 @@ export default function Home() {
                 <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
                 <div>
                   <h3 className="text-xl font-semibold">Professor</h3>
-                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, 1998 – June 2025</p>
+                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, 1998 – 2025</p>
                 </div>
               </div>
 
