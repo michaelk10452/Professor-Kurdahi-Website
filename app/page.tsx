@@ -32,10 +32,13 @@ export default function Home() {
               <div className="md:col-span-4">
                 <div className="relative overflow-hidden shadow-lg border-4 rounded-full aspect-square w-full max-w-md mx-auto" style={{ borderColor: '#f6aa0d' }}>
                   <Image
-                    src="/fadi-kurdahi.png?height=400&width=400"
+                    src="/fadi-kurdahi.png"
                     alt="Professor Fadi Kurdahi"
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    quality={100}
+                    priority
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    style={{ objectFit: 'cover' }}
                     className="transition-transform duration-300 hover:scale-102"
                   />
                 </div>
