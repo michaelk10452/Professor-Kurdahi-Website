@@ -53,44 +53,44 @@
       "authors": "H. Singh, M.-H. Lee, G. Lu, F.J. Kurdahi, N. Bagherzadeh, E.M. Chaves Filho",
       "venue": "IEEE Transactions on Computers",
       "year": 2000,
-      "citations": 772,
+      "citations": 1319,
       "link": "https://dl.acm.org/doi/10.1109/12.859540"
     },
     {
       "id": 2,
       "title": "REAL: A Program for REgister ALlocation",
       "authors": "F.J. Kurdahi, A.C. Parker",
-      "venue": "24th Design Automation Conference (DAC)",
+      "venue": "Proceedings of the 24th ACM/IEEE Design Automation Conference",
       "year": 1987,
-      "citations": 284,
+      "citations": 452,
       "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
     },
     {
       "id": 3,
-      "title": "Techniques for Area Estimation of VLSI Layouts",
-      "authors": "F.J. Kurdahi, A.C. Parker",
-      "venue": "IEEE Transactions on Computer-Aided Design",
-      "year": 1989,
-      "citations": 198,
+      "title": "Design and Implementation of the MorphoSys Reconfigurable Computing Processor",
+      "authors": "M.-H. Lee, H. Singh, G. Lu, N. Bagherzadeh, F.J. Kurdahi, E.M.C. Filho",
+      "venue": "The Journal of VLSI Signal Processing",
+      "year": 2000,
+      "citations": 228,
       "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
     },
     {
       "id": 4,
-      "title": "Combined Topological and Functionality Based Delay Estimation Using a Layout-Driven Approach for High Level Applications",
-      "authors": "C. Ramachandran, F.J. Kurdahi",
-      "venue": "IEEE Transactions on Computer-Aided Design",
-      "year": 1994,
-      "citations": 156,
+      "title": "Power-Aware Scheduling Under Timing Constraints for Mission-Critical Embedded Systems",
+      "authors": "J. Liu, P.H. Chou, N. Bagherzadeh, F. Kurdahi",
+      "venue": "Proceedings of the 38th Annual Design Automation Conference",
+      "year": 2001,
+      "citations": 154,
       "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
     },
     {
       "id": 5,
-      "title": "Overcoming Crossbar Nonidealities in Binary Neural Networks Through Learning",
-      "authors": "Mohammed E. Fouda, Jongeun Lee, Ahmed M. Eltawil, Fadi Kurdahi",
-      "venue": "IEEE/ACM International Symposium on Nanoscale Architectures (NANOARCH)",
-      "year": 2018,
-      "citations": 148,
-      "link": "https://dl.acm.org/doi/10.1145/3232195.3232226"
+      "title": "Techniques for Area Estimation of VLSI Layouts",
+      "authors": "F.J. Kurdahi, A.C. Parker",
+      "venue": "IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems",
+      "year": 1989,
+      "citations": 151,
+      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
     }
   ],
   "lastUpdated": "2026-01-17T00:00:00Z",
