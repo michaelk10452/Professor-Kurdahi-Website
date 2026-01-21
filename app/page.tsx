@@ -59,11 +59,11 @@ export default function Home() {
                     <a href="https://engineering.uci.edu/dept/eecs" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
                       Department of Electrical Engineering and Computer Science
                     </a>{" "}
-                    UC Irvine, he has been a faculty member since 1987 and currently serves as Director of the{" "}
+                    at UC Irvine, he has been a faculty member since 1987 and currently serves as Director of the{" "}
                     <a href="https://cecs.uci.edu" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
                       Center for Embedded and Cyber-Physical Systems (CECS)
                     </a>.{" "}
-                    He also founded and leads the innovative and rapidly expanding{" "}
+                    He also founded and leads the highly regarded and rapidly growing{" "}
                     <a href="https://mecps.eecs.uci.edu" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
                       Master of Embedded and Cyber-Physical Systems (MECPS)
                     </a>{" "}
