@@ -105,7 +105,7 @@ export default function Home() {
               <div className="flex items-start">
                 <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-xl font-semibold">Director, Center for Embedded & Cyber-physical Systems (CECS)</h3>
+                  <h3 className="text-xl font-semibold">Director, Center for Embedded & Cyber-Physical Systems (CECS)</h3>
                   <p className="text-gray-600">University of California, Irvine, 2012 – present</p>
                 </div>
               </div>
