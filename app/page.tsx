@@ -39,8 +39,8 @@ export default function Home() {
                     priority
                     sizes="(max-width: 768px) 100vw, 33vw"
                     style={{
-                      objectFit: 'cover',
-                      objectPosition: 'center 85%'
+                      objectFit: 'contain',
+                      objectPosition: 'center center'
                     }}
                     className="transition-transform duration-300 hover:scale-102"
                   />
