@@ -55,7 +55,7 @@ export default function Home() {
                 </h1>
                 <div className="space-y-6 text-gray-100">
                   <p className="text-lg">
-                    A Distinguished Professor in the{" "}
+                    A Distinguished Professor who has been in the{" "}
                     <a href="https://engineering.uci.edu/dept/eecs" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
                       Department of Electrical Engineering and Computer Science
                     </a>{" "}
@@ -80,7 +80,7 @@ export default function Home() {
                     </a>.
                   </p>
                   <p className="text-lg">
-                    An IEEE and AAAS Fellow, Prof. Kurdahi earned his M.S. & Ph.D. in Computer Engineering from USC and his undergraduate degree from the American University of Beirut. He remains passionate about advancing engineering education and preparing students for the rapidly evolving challenges of embedded and cyber-physical systems.
+                    An IEEE and AAAS Fellow, Prof. Kurdahi earned his M.S. & Ph.D. in Computer Engineering from USC and his undergraduate degree from the American University of Beirut. He remains passionate about advancing engineering research and education and preparing students for the rapidly evolving challenges of embedded and cyber-physical systems.
                   </p>
                 </div>
               </div>
