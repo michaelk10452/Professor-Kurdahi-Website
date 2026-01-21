@@ -30,7 +30,7 @@ export default function Home() {
           <div className="container mx-auto px-4 py-20">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
               <div className="md:col-span-4">
-                <div className="relative overflow-hidden shadow-lg border-4 rounded-full aspect-square w-full max-w-md mx-auto" style={{ borderColor: '#f6aa0d' }}>
+                <div className="relative overflow-hidden shadow-lg border-4 rounded-full aspect-square w-full max-w-md mx-auto bg-white" style={{ borderColor: '#f6aa0d' }}>
                   <Image
                     src="/Fadi_Kurdahi.png"
                     alt="Professor Fadi Kurdahi"
@@ -39,11 +39,10 @@ export default function Home() {
                     priority
                     sizes="(max-width: 768px) 100vw, 33vw"
                     style={{
-                      objectFit: 'cover',
-                      objectPosition: 'center 45%',
-                      transform: 'scale(0.85)'
+                      objectFit: 'contain',
+                      objectPosition: 'center center'
                     }}
-                    className="transition-transform duration-300 hover:scale-[0.87]"
+                    className="transition-transform duration-300 hover:scale-105"
                   />
                 </div>
               </div>
