@@ -38,7 +38,10 @@ export default function Home() {
                     quality={100}
                     priority
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    style={{ objectFit: 'cover' }}
+                    style={{ 
+                      objectFit: 'cover', 
+                      objectPosition: 'center 35%' 
+                    }}
                     className="transition-transform duration-300 hover:scale-102"
                   />
                 </div>
