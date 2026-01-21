@@ -40,7 +40,7 @@ export default function Home() {
                     sizes="(max-width: 768px) 100vw, 33vw"
                     style={{ 
                       objectFit: 'cover', 
-                      objectPosition: 'center 35%' 
+                      objectPosition: 'center 40%' 
                     }}
                     className="transition-transform duration-300 hover:scale-102"
                   />
