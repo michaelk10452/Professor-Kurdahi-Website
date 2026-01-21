@@ -46,12 +46,12 @@ export default function Header() {
         </button>
         <ul className={`absolute md:relative top-full left-0 w-full md:w-auto bg-white md:bg-transparent shadow-lg md:shadow-none p-6 md:p-0 rounded-lg ${isOpen ? "flex flex-col space-y-4" : "hidden"} md:flex md:flex-row md:space-x-6`}>
           {menuItems.map(({ name, icon: Icon }) => (
-            <li key={name} className="flex items-center space-x-2">
-              <Icon className={`w-5 h-5 transition-colors duration-300 ${isScrolled ? "md:text-gray-900" : "md:text-white"} text-gray-900 md:text-inherit`} />
+            <li key={name}>
               <Link
                 href={`#${name.toLowerCase()}`}
-                className={`block transition-colors duration-300 ${isScrolled ? "md:text-gray-900 hover:text-gray-700" : "md:text-white hover:text-gray-300"} text-gray-900 hover:text-gray-700 md:text-inherit`}
+                className={`flex items-center space-x-2 transition-colors duration-300 ${isScrolled ? "md:text-gray-900 hover:text-gray-700" : "md:text-white hover:text-gray-300"} text-gray-900 hover:text-gray-700 md:text-inherit`}
               >
+                <Icon className="w-5 h-5" />
                 {name}
               </Link>
             </li>
