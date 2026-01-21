@@ -32,7 +32,7 @@ export default function Home() {
               <div className="md:col-span-4">
                 <div className="relative overflow-hidden shadow-lg border-4 rounded-full aspect-square w-full max-w-md mx-auto" style={{ borderColor: '#f6aa0d' }}>
                   <Image
-                    src="/public/Fadi Kurdahi.png"
+                    src="/Fadi_Kurdahi.png"
                     alt="Professor Fadi Kurdahi"
                     fill
                     quality={100}
