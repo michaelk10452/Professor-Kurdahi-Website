@@ -49,7 +49,7 @@ export default function Header() {
             <li key={name}>
               <Link
                 href={`#${name.toLowerCase()}`}
-                className={`flex items-center space-x-2 transition-colors duration-300 ${isScrolled ? "md:text-gray-900 hover:text-gray-700" : "md:text-white hover:text-gray-300"} text-gray-900 hover:text-gray-700 md:text-inherit`}
+                className={`flex items-center space-x-3 transition-colors duration-300 ${isScrolled ? "md:text-gray-900 hover:text-gray-700" : "md:text-white hover:text-gray-300"} text-gray-900 hover:text-gray-700 md:text-inherit`}
               >
                 <Icon className="w-5 h-5" />
                 {name}
