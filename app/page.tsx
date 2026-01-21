@@ -32,18 +32,17 @@ export default function Home() {
               <div className="md:col-span-4">
                 <div className="relative overflow-hidden shadow-lg border-4 rounded-full aspect-square w-full max-w-md mx-auto" style={{ borderColor: '#f6aa0d' }}>
                   <Image
-                    src="/Fadi_Kurdahi.png"
+                    src="/kurdahi.png"
                     alt="Professor Fadi Kurdahi"
                     fill
                     quality={100}
                     priority
                     sizes="(max-width: 768px) 100vw, 33vw"
                     style={{ 
-                      objectFit: 'cover',
-                      objectPosition: 'center 45%',
-                      transform: 'scale(0.85)'
+                      objectFit: 'cover', 
+                      objectPosition: 'center 50%' 
                     }}
-                    className="transition-transform duration-300 hover:scale-[0.87]"
+                    className="transition-transform duration-300 hover:scale-102"
                   />
                 </div>
               </div>
@@ -81,7 +80,7 @@ export default function Home() {
                     </a>.
                   </p>
                   <p className="text-lg">
-                    An IEEE and AAAS Fellow, Prof. Kurdahi earned his M.S. & Ph.D. in Computer Engineering from USC and his undergraduate degree from the American University of Beirut. He remains passionate about advancing engineering research and education and preparing students for the rapidly evolving challenges of embedded and cyber-physical systems.
+                    An IEEE and AAAS Fellow, Prof. Kurdahi earned his M.S. & Ph.D. in Computer Engineering from USC and his undergraduate degree from the American University of Beirut. He remains passionate about advancing engineering researeducation and preparing students for the rapidly evolving challenges of embedded and cyber-physical systems.
                   </p>
                 </div>
               </div>
