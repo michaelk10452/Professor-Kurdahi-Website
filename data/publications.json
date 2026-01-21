@@ -16,7 +16,7 @@
       "venue": "2025 IEEE International Symposium on Circuits and Systems (ISCAS), 1-5",
       "year": 2025,
       "citations": 0,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+      "link": "https://ieeexplore.ieee.org/abstract/document/11043512"
     },
     {
       "id": 3,
@@ -25,7 +25,7 @@
       "venue": "2025 Design, Automation & Test in Europe Conference (DATE), 1-7",
       "year": 2025,
       "citations": 4,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+      "link": "https://ieeexplore.ieee.org/abstract/document/10992862"
     },
     {
       "id": 4,
@@ -34,7 +34,7 @@
       "venue": "Advanced Electronic Materials 11 (3), 2400450",
       "year": 2025,
       "citations": 2,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+      "link": "https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/aelm.202400450"
     },
     {
       "id": 5,
@@ -43,7 +43,7 @@
       "venue": "ACM Journal on Emerging Technologies in Computing Systems 20 (4), 1-17",
       "year": 2025,
       "citations": 1,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+      "link": "https://dl.acm.org/doi/full/10.1145/3695875"
     }
   ],
   "mostCited": [
