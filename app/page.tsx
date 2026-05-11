@@ -1,532 +1,492 @@
-import Header from "./components/Header"
+"use client"
+
 import Image from "next/image"
-import { Briefcase, Lightbulb, Mail, MapPin, GraduationCap, Award, Video, FileText, User } from "lucide-react"
-import PublicationsList from "./components/PublicationsList"
-import { Merriweather } from 'next/font/google'
-import { faGoogleScholar } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useRef, useState } from "react"
 
-<FontAwesomeIcon icon={faGoogleScholar} className="w-6 h-6 text-blue-600 mr-4" />
+type Track = "academic" | "industry"
 
-const merriweather = Merriweather({
-  subsets: ['latin'],
-  weight: ['700'],  // Using 700 (bold) since Merriweather's weight works well at this value
-  display: 'swap',
-});
+const ACCENTS = [
+  { value: "#3b3a36", label: "Graphite" },
+  { value: "#3d4f3a", label: "Sage" },
+  { value: "#3a4658", label: "Slate blue" },
+  { value: "#5a3e36", label: "Walnut" },
+]
 
+const ACADEMIC = [
+  { when: "2025 — Present", what: "Distinguished Professor", where: "EECS, UC Irvine", meta: "Current" },
+  { when: "2022 — Present", what: "Director, MECPS Program", where: "UC Irvine", meta: "Current" },
+  { when: "2012 — Present", what: "Director, CECS", where: "Center for Embedded & Cyber-Physical Systems", meta: "Current" },
+  { when: "2017 — 2022", what: "Associate Dean", where: "Samueli School of Engineering", meta: "5 yrs" },
+  { when: "1998 — 2025", what: "Professor", where: "EECS, UC Irvine", meta: "27 yrs" },
+  { when: "1993 — 1998", what: "Associate Professor", where: "EECS, UC Irvine", meta: "5 yrs" },
+  { when: "1987 — 1993", what: "Assistant Professor", where: "EECS, UC Irvine", meta: "6 yrs" },
+]
+
+const INDUSTRY = [
+  { when: "2019 — Present", what: "Chief Scientific Advisor", where: "The Blue Box Biomedical Solutions, Barcelona", meta: "Current" },
+  { when: "2000 — 2002", what: "Founder, VP Engineering & CTO", where: "Morpho Technologies, Irvine, CA", meta: "2 yrs" },
+  { when: "1995 — 1996", what: "Consultant", where: "United Nations Development Program (UNDP)", meta: "1 yr" },
+]
+
+const EDUCATION = [
+  { when: "1987", what: "Ph.D., Computer Engineering", where: "University of Southern California", meta: "USC" },
+  { when: "1983", what: "M.S., Computer Engineering", where: "University of Southern California", meta: "USC" },
+  { when: "1981", what: "B.E., Electrical Engineering", where: "American University of Beirut", meta: "AUB" },
+]
+
+const HONORS = [
+  { when: "2016", what: "Best Paper Award", where: "IEEE Asia-Pacific Design Automation Conference" },
+  { when: "2009", what: "AAAS Fellow", where: "American Association for the Advancement of Science" },
+  { when: "2008", what: "Distinguished Alumnus Award", where: "American University of Beirut" },
+  { when: "2006", what: "Best Paper Award", where: "IEEE Int'l Conference on Quality Electronic Design" },
+  { when: "2005", what: "IEEE Fellow", where: "Institute of Electrical and Electronics Engineers" },
+  { when: "2002", what: "Best Paper Award", where: "IEEE VLSI Transactions" },
+]
+
+const RESEARCH = [
+  {
+    title: "VLSI System Design & Automation",
+    description: "High-level synthesis, custom datapath design, and methodologies for moving from specification to silicon.",
+  },
+  {
+    title: "Embedded & Cyber-Physical Systems",
+    description: "Computing systems that engage with the physical world — across biomedical, mobile, and real-time applications.",
+  },
+  {
+    title: "Low-Power Process-Aware SoCs",
+    description: "Co-design across the stack: making the tradeoff between energy, performance, and process variability explicit.",
+  },
+  {
+    title: "Reconfigurable Computing",
+    description: "Programmable fabrics and adaptive architectures bridging flexibility and the efficiency of dedicated hardware.",
+  },
+]
+
+const VIDEOS = [
+  { href: "https://youtu.be/A6Hv6njW3CE", title: "Computer Engineering at UCI", src: "UC Irvine" },
+  { href: "https://youtu.be/DjzEbJ_6NeE", title: "MProg Program Overview", src: "UC Irvine" },
+  { href: "https://mecps.uci.edu/wp-content/uploads/2018/03/MECPS-Intro-to-Cyber-Physical-Systems-by-Fadi.mp4", title: "Intro to Cyber-Physical Systems", src: "MECPS, UCI" },
+]
+
+const ARTICLES = [
+  { year: "2025", href: "https://www.cecs.uci.edu/event/prof-fadi-kurdahi-honored-at-waaaub-orange-county-chapter-annual-dinner/", title: "Prof. Fadi Kurdahi Honored at WAAAUB Orange County Chapter Annual Dinner", src: "UCI CECS" },
+  { year: "2024", href: "https://elpais.com/cat/2021/05/10/tecnologia/1620657621_446415.html", title: "Judit Giró, la jove catalana que utilitza intel·ligència artificial per detectar el càncer", src: "El País" },
+  { year: "2022", href: "https://engineering.uci.edu/news/2022/3/blue-box-wants-democratize-early-breast-cancer-detection", title: "The Blue Box Wants to Democratize Early Breast Cancer Detection", src: "UCI Samueli School News" },
+  { year: "2021", href: "https://innovation.uci.edu/2021/01/whats-in-the-blue-box-breast-cancer-detection/", title: "What's in The Blue Box? Breast Cancer Detection", src: "UCI Beall Applied Innovation" },
+  { year: "2020", href: "https://engineering.uci.edu/news/2020/12/samueli-school-researcher-wins-international-design-award", title: "Samueli School Researcher Wins International Design Award", src: "UCI Samueli School News" },
+  { year: "2019", href: "https://www.espn.com/esports/story/_/id/26788969/uci-descraton-sharpens-college-league-legends-championship", title: "UCI's Descraton Sharpens Up for College League of Legends Championship", src: "ESPN" },
+  { year: "1998", href: "https://books.google.com/books?id=C5-l28dcz50C&lpg=PA1&pg=PA9", title: "PC Magazine: Adaptive Chips", src: "PC Magazine" },
+]
+
+function MoonIcon() {
+  return (
+    <svg className="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+  )
+}
+
+function SunIcon() {
+  return (
+    <svg className="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+  )
+}
+
+function PlayIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M8 5v14l11-7z" />
+    </svg>
+  )
+}
+
+function Stat({ target, format, label, prefix }: { target: number; format?: (n: number) => string; label: string; prefix?: React.ReactNode }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const [value, setValue] = useState<number | null>(null)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    if (typeof IntersectionObserver === "undefined") {
+      setValue(target)
+      return
+    }
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
+    if (reduced) {
+      setValue(target)
+      return
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return
+          const duration = 1400
+          const start = performance.now()
+          const tick = (t: number) => {
+            const k = Math.min(1, (t - start) / duration)
+            const eased = 1 - Math.pow(1 - k, 3)
+            setValue(Math.round(target * eased))
+            if (k < 1) requestAnimationFrame(tick)
+          }
+          requestAnimationFrame(tick)
+          io.unobserve(e.target)
+        })
+      },
+      { threshold: 0.5 },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [target])
+
+  const display = value === null ? "—" : format ? format(value) : value.toLocaleString()
+
+  return (
+    <div className="stat">
+      <span className="stat-num">
+        {prefix}
+        <span ref={ref}>{display}</span>
+      </span>
+      <span className="stat-label">{label}</span>
+    </div>
+  )
+}
 
 export default function Home() {
+  const [track, setTrack] = useState<Track>("academic")
+  const [theme, setTheme] = useState<"light" | "dark">("light")
+  const [accent, setAccent] = useState<string>(ACCENTS[0].value)
+
+  // Sync theme + accent from localStorage (in addition to the pre-hydration script in layout)
+  useEffect(() => {
+    const t = (localStorage.getItem("fk-theme-c") as "light" | "dark" | null) ?? "light"
+    setTheme(t)
+    const a = localStorage.getItem("fk-accent-c")
+    if (a) setAccent(a)
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme)
+  }, [theme])
+
+  useEffect(() => {
+    document.documentElement.style.setProperty("--accent", accent)
+  }, [accent])
+
+  // IntersectionObserver fade-ins
+  useEffect(() => {
+    const fades = document.querySelectorAll<HTMLElement>(".fade")
+    if (typeof IntersectionObserver === "undefined") {
+      fades.forEach((el) => el.classList.add("in"))
+      return
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("in")
+            io.unobserve(e.target)
+          }
+        })
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+    )
+    fades.forEach((el) => io.observe(el))
+    return () => io.disconnect()
+  }, [])
+
+  const toggleTheme = () => {
+    const next = theme === "light" ? "dark" : "light"
+    setTheme(next)
+    try {
+      localStorage.setItem("fk-theme-c", next)
+    } catch {}
+  }
+
+  const pickAccent = (value: string) => {
+    setAccent(value)
+    try {
+      localStorage.setItem("fk-accent-c", value)
+    } catch {}
+  }
+
+  const list = track === "academic" ? ACADEMIC : INDUSTRY
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
-      <main className="flex-grow">
-      <section
-          id="about"
-          className="min-h-screen flex items-center"
-          style={{ 
-            background: 'linear-gradient(125deg, #00386c 0%, #004c8c 35%, #001428 100%)'
-          }}
-        >
-          <div className="container mx-auto px-4 py-20">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-16 items-center">
-              <div className="md:col-span-4">
-                <div className="relative overflow-hidden shadow-lg border-4 rounded-full aspect-square w-full max-w-md mx-auto" style={{ borderColor: '#f6aa0d' }}>
-                  <Image
-                    src="/kurdahi.png"
-                    alt="Professor Fadi Kurdahi"
-                    fill
-                    quality={100}
-                    priority
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    style={{ 
-                      objectFit: 'cover', 
-                      objectPosition: 'center 50%' 
-                    }}
-                    className="transition-transform duration-300 hover:scale-102"
-                  />
-                </div>
-              </div>
-              <div className="md:col-span-8">
-                <h1 className={`text-3xl md:text-4xl mb-6 text-white ${merriweather.className}`}
-                    style={{ 
-                      letterSpacing: '0.01em'
-                    }}>
-                  Fadi Kurdahi
-                </h1>
-                <div className="space-y-6 text-gray-100">
-                  <p className="text-lg">
-                    A Distinguished Professor in the{" "}
-                    <a href="https://engineering.uci.edu/dept/eecs" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
-                      Department of Electrical Engineering and Computer Science
-                    </a>{" "}
-                    at UC Irvine, he has been a faculty member since 1987 and currently serves as Director of the{" "}
-                    <a href="https://cecs.uci.edu" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
-                      Center for Embedded and Cyber-Physical Systems (CECS)
-                    </a>.{" "}
-                    He also founded and leads the highly regarded and rapidly growing{" "}
-                    <a href="https://mecps.eecs.uci.edu" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
-                      Master of Embedded and Cyber-Physical Systems (MECPS)
-                    </a>{" "}
-                    program to address the growing demand for expertise in these fields.
-                  </p>
-                  <p className="text-lg">
-                    His research spans VLSI system design, digital systems automation, and embedded and cyber-physical systems. From 2017 to 2022, he served as Associate Dean of the{" "}
-                    <a href="https://engineering.uci.edu" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
-                      Samueli School of Engineering
-                    </a>
-                    , advancing its educational mission. He also holds a joint appointment in the{" "}
-                    <a href="https://www.ics.uci.edu" className="text-white hover:text-gray-200 underline underline-offset-4 decoration-1">
-                      Donald Bren School of Information and Computer Sciences
-                    </a>.
-                  </p>
-                  <p className="text-lg">
-                    An IEEE and AAAS Fellow, Prof. Kurdahi earned his M.S. & Ph.D. in Computer Engineering from USC and his undergraduate degree from the American University of Beirut. He remains passionate about advancing engineering research and education as well as preparing students for the rapidly evolving challenges of embedded and cyber-physical systems.
-                  </p>
-                </div>
+    <>
+      <div className="page">
+        <div className="bar">
+          <span className="mark">Fadi Kurdahi</span>
+          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+            <MoonIcon />
+            <SunIcon />
+          </button>
+        </div>
+
+        {/* HERO */}
+        <header className="hero">
+          <div className="hero-row fade">
+            <div className="portrait">
+              <Image
+                src="/kurdahi.png"
+                alt="Fadi Kurdahi"
+                width={184}
+                height={184}
+                priority
+                sizes="92px"
+              />
+            </div>
+            <div>
+              <h1 className="hero-name">Fadi Kurdahi</h1>
+              <div className="hero-role">
+                Distinguished Professor<span className="sep">·</span>EECS<span className="sep">·</span>UC Irvine
               </div>
             </div>
           </div>
-        </section>
-        <section id="appointments" className="py-20">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-10 text-center">Appointments</h2>
+          <p className="hero-lede fade">
+            Working at the intersection of VLSI, embedded systems, and the people who design them — since 1987.
+          </p>
+        </header>
 
-            {/* Academic Appointments */}
-            <h3 className="text-3xl font-semibold mb-6">Academic</h3>
-            <div className="space-y-6 mb-12">
-              <div className="flex items-start">
-                <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Distinguished Professor</h3>
-                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, 2025 – present</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Director, Center for Embedded & Cyber-Physical Systems (CECS)</h3>
-                  <p className="text-gray-600">University of California, Irvine, 2012 – present</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Director, Professional Master of Embedded & Cyber-Physical Systems</h3>
-                  <p className="text-gray-600">University of California, Irvine, 2022 – present</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Professor</h3>
-                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, 1998 – 2025</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Associate Dean for Graduate and Professional Studies</h3>
-                  <p className="text-gray-600">Henry Samueli School of Engineering, University of California, Irvine, 2017 – 2022</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Associate Professor</h3>
-                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, 1993 – 1998</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <User className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Assistant Professor</h3>
-                  <p className="text-gray-600">Department of Electrical Engineering and Computer Science, University of California, Irvine, 1987 – 1993</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Industry Appointments */}
-            <h3 className="text-3xl font-semibold mb-6">Industry</h3>
-            <div className="space-y-6">
-              <div className="flex items-start">
-                <Briefcase className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Chief Scientific Advisor</h3>
-                  <p className="text-gray-600">The Blue Box Biomedical Solutions, Barcelona, Spain, 2019 – Present</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <Briefcase className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Founder, VP of Engineering and Chief Technical Officer</h3>
-                  <p className="text-gray-600">Morpho Technologies, Irvine, CA, 2000 – 2002</p>
-                </div>
-              </div>
-
-              <div className="flex items-start">
-                <Briefcase className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Consultant</h3>
-                  <p className="text-gray-600">The United Nations Development Program (UNDP), 1995 – 1996</p>
-                </div>
-              </div>
-            </div>
+        {/* BIO */}
+        <section id="bio">
+          <div className="section-label fade">About</div>
+          <div className="prose fade">
+            <p>
+              I'm a faculty member in the{" "}
+              <a href="https://engineering.uci.edu/dept/eecs">Department of Electrical Engineering and Computer Science</a> at
+              UC Irvine, where I've been since 1987. I currently direct the{" "}
+              <a href="https://cecs.uci.edu">Center for Embedded and Cyber-Physical Systems</a> and the{" "}
+              <a href="https://mecps.eecs.uci.edu">Master of Embedded and Cyber-Physical Systems</a> program, which I founded to
+              address the growing demand for expertise in this area.
+            </p>
+            <p>
+              My research focuses on VLSI system design, digital systems automation, and embedded and cyber-physical systems.
+              From 2017 to 2022 I served as Associate Dean for Graduate and Professional Studies at the{" "}
+              <a href="https://engineering.uci.edu">Samueli School of Engineering</a>. I also hold a joint appointment in the{" "}
+              <a href="https://www.ics.uci.edu">Donald Bren School of Information and Computer Sciences</a>.
+            </p>
+            <p>
+              I earned my M.S. and Ph.D. in Computer Engineering from USC, and my undergraduate degree from the American
+              University of Beirut. I'm a Fellow of IEEE and AAAS.
+            </p>
           </div>
         </section>
 
-        <section id="education" className="py-20">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-10 text-center">Educational Background</h2>
-            <div className="space-y-6">
-              <div className="flex items-start">
-                <GraduationCap className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Ph.D. in Computer Engineering</h3>
-                  <p className="text-gray-600">
-                    <a 
-                      href="https://www.usc.edu"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 transition-colors"
-                    >
-                      University of Southern California
-                    </a>, 1987
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <GraduationCap className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">M.S. in Computer Engineering</h3>
-                  <p className="text-gray-600">
-                    <a 
-                      href="https://www.usc.edu"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 transition-colors"
-                    >
-                      University of Southern California
-                    </a>, 1983
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <GraduationCap className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">B.E. in Electrical Engineering</h3>
-                  <p className="text-gray-600">
-                    <a 
-                      href="https://www.aub.edu.lb"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 transition-colors"
-                    >
-                      American University of Beirut
-                    </a>, 1981
-                  </p>
-                </div>
-              </div>
-            </div>
+        {/* STATS */}
+        <section id="stats" style={{ border: "none", paddingTop: 32, paddingBottom: 32 }}>
+          <div className="stats fade">
+            <Stat target={10800} label="Citations" />
+            <Stat target={48} label="h-index" prefix={<><span className="h">h</span>·</>} format={(n) => String(n)} />
+            <Stat target={320} label="Publications" format={(n) => String(n)} />
+            <Stat target={38} label="Years at UCI" format={(n) => String(n)} />
           </div>
         </section>
 
-        <section id="awards" className="py-20 bg-gray-100">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-10 text-center">Awards and Honors</h2>
-            <div className="space-y-6">
-              <div className="flex items-start">
-                <Award className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">IEEE Fellow (2005)</h3>
-                  <p className="text-gray-600">
-                    The Institute of Electrical and Electronics Engineers
-                  </p>
+        {/* APPOINTMENTS */}
+        <section id="career">
+          <div className="section-label fade">Appointments</div>
+          <div className="track-switch fade">
+            <button className={track === "academic" ? "active" : ""} onClick={() => setTrack("academic")}>
+              Academic
+            </button>
+            <button className={track === "industry" ? "active" : ""} onClick={() => setTrack("industry")}>
+              Industry
+            </button>
+          </div>
+          <div className="list fade">
+            {list.map((r) => (
+              <div className="row" key={`${r.when}-${r.what}`}>
+                <span className="when">{r.when}</span>
+                <div className="what">
+                  {r.what}
+                  <span className="where">{r.where}</span>
                 </div>
+                <span className="meta">{r.meta}</span>
               </div>
-              <div className="flex items-start">
-                <Award className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">AAAS Fellow (2009)</h3>
-                  <p className="text-gray-600">
-                    The American Association for the Advancement of Science
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <Award className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Best Paper Award (2002)</h3>
-                  <p className="text-gray-600">IEEE VLSI Transactions</p>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <Award className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Best Paper Award (2006)</h3>
-                  <p className="text-gray-600">IEEE International Conference on Quality Electronic Design</p>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <Award className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Distinguished Alumnus Award (2008)</h3>
-                  <p className="text-gray-600">The American University of Beirut</p>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <Award className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 mt-1" />
-                <div>
-                  <h3 className="text-xl font-semibold">Best Paper Award (2016)</h3>
-                  <p className="text-gray-600">IEEE Asia-Pacific Design Automation Conference</p>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
-        <section id="research" className="py-20">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-10 text-center">Research Interests</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {[
-                { title: "VLSI System Design and Design Automation", icon: Lightbulb },
-                { title: "Embedded and Cyber-Physical Systems", icon: Lightbulb },
-                { title: "Low-Power, Process-Aware Systems-on-Chip Design", icon: Lightbulb },
-                { title: "Reconfigurable Computing", icon: Lightbulb },
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-                >
-                  <item.icon className="w-12 h-12 text-blue-600 mb-4" />
-                  <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+        {/* EDUCATION */}
+        <section id="education">
+          <div className="section-label fade">Education</div>
+          <div className="list fade">
+            {EDUCATION.map((r) => (
+              <div className="row" key={`${r.when}-${r.what}`}>
+                <span className="when">{r.when}</span>
+                <div className="what">
+                  {r.what}
+                  <span className="where">{r.where}</span>
                 </div>
+                <span className="meta">{r.meta}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* HONORS */}
+        <section id="awards">
+          <div className="section-label fade">Honors</div>
+          <div className="list fade">
+            {HONORS.map((r) => (
+              <div className="row" key={`${r.when}-${r.what}`}>
+                <span className="when">{r.when}</span>
+                <div className="what">
+                  {r.what}
+                  <span className="where">{r.where}</span>
+                </div>
+                <span className="meta" />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* RESEARCH */}
+        <section id="research">
+          <div className="section-label fade">Research</div>
+          <div className="research fade">
+            {RESEARCH.map((r) => (
+              <div className="r-item" key={r.title}>
+                <h3>{r.title}</h3>
+                <p>{r.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* PUBLICATIONS */}
+        <section id="publications">
+          <div className="section-label fade">Publications</div>
+          <div className="fade">
+            <div className="pub-head">
+              <span>Recent &amp; most cited</span>
+              <span>300+ indexed</span>
+            </div>
+            <div className="pub-skel" aria-hidden="true">
+              {[0, 1, 2, 3].map((i) => (
+                <div className="pub-skel-row" key={i}>
+                  <div className="pub-skel-line s"></div>
+                  <div>
+                    <div className={`pub-skel-line ${i === 2 ? "m" : "l"}`}></div>
+                    <div className={`pub-skel-line ${i === 1 ? "s" : "m"}`}></div>
+                  </div>
+                  <div className="pub-skel-line s"></div>
+                </div>
+              ))}
+            </div>
+            <div className="pub-status">
+              <span className="dot"></span>
+              <span>Syncing with Google Scholar</span>
+            </div>
+            <a
+              className="pub-link"
+              href="https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View on Google Scholar →
+            </a>
+          </div>
+        </section>
+
+        {/* MEDIA */}
+        <section id="media">
+          <div className="section-label fade">Media</div>
+
+          <div className="media fade">
+            <div className="media-sub">Videos</div>
+            <div className="videos">
+              {VIDEOS.map((v) => (
+                <a className="video" href={v.href} key={v.href} target="_blank" rel="noopener noreferrer">
+                  <div className="thumb">
+                    <PlayIcon />
+                  </div>
+                  <h4>{v.title}</h4>
+                  <div className="src">{v.src}</div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <div className="media fade">
+            <div className="media-sub">Articles &amp; Press</div>
+            <div className="articles">
+              {ARTICLES.map((a) => (
+                <a className="article" href={a.href} key={a.href} target="_blank" rel="noopener noreferrer">
+                  <span className="year">{a.year}</span>
+                  <div>
+                    <h4>{a.title}</h4>
+                    <span className="src">{a.src}</span>
+                  </div>
+                </a>
               ))}
             </div>
           </div>
         </section>
 
-        <section id="publications" className="py-20 bg-gray-100">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-10 text-center">Publications</h2>
-            <PublicationsList />
-          </div>
-        </section>
-
-        <section id="media" className="py-20">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-10 text-center">Media</h2>
-
-            {/* Videos */}
-            <div className="mb-12">
-              <h3 className="text-2xl font-semibold mb-6">Videos</h3>
-              <div className="space-y-4">
-                <a
-                  href="https://youtu.be/A6Hv6njW3CE?si=d-JrFE5oShYkYJ1N"
-                  className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
-                >
-                  <Video className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 group-hover:text-blue-700" />
-                  <span className="text-blue-600 group-hover:text-blue-700">
-                    Computing Engineering Promotional Video
-                  </span>
-                </a>
-                <a
-                  href="https://youtu.be/DjzEbJ_6NeE?si=xceX7LWVcK7OZDiU"
-                  className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
-                >
-                  <Video className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 group-hover:text-blue-700" />
-                  <span className="text-blue-600 group-hover:text-blue-700">MProg Program Promotional Video</span>
-                </a>
-                <a
-                  href="https://mecps.uci.edu/wp-content/uploads/2018/03/MECPS-Intro-to-Cyber-Physical-Systems-by-Fadi.mp4"
-                  className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
-                >
-                  <Video className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 group-hover:text-blue-700" />
-                  <span className="text-blue-600 group-hover:text-blue-700">MECPS Promotional Video</span>
-                </a>
-              </div>
+        {/* CONTACT */}
+        <section id="contact" style={{ borderBottom: "none" }}>
+          <div className="section-label fade">Contact</div>
+          <dl className="fade" style={{ margin: 0 }}>
+            <div className="contact-row">
+              <dt>Email</dt>
+              <dd>
+                <a href="mailto:kurdahi@uci.edu">kurdahi@uci.edu</a>
+              </dd>
             </div>
-
-            {/* Articles */}
-            <div>
-              <h3 className="text-2xl font-semibold mb-6"> Articles & Reviews</h3>
-              <div className="space-y-4">
-                <a
-                  href="https://www.cecs.uci.edu/event/prof-fadi-kurdahi-honored-at-waaaub-orange-county-chapter-annual-dinner/"
-                  className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
-                >
-                  <FileText className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 group-hover:text-blue-700" />
-                  <div>
-                    <span className="text-blue-600 group-hover:text-blue-700 block mb-1">
-                      Prof. Fadi Kurdahi Honored at WAAAUB Orange County Chapter Annual Dinner
-                    </span>
-                    <span className="text-sm text-gray-600">UCI CECS • 2025</span>
-                  </div>
-                </a>
-
-                <a
-                  href="https://elpais.com/cat/2021/05/10/tecnologia/1620657621_446415.html"
-                  className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
-                >
-                  <FileText className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 group-hover:text-blue-700" />
-                  <div>
-                    <span className="text-blue-600 group-hover:text-blue-700 block mb-1">
-                    Judit Giró, la jove catalana que utilitza intelligència artificial per detectar el càncer
-                    </span>
-                    <span className="text-sm text-gray-600">El País • 2024</span>
-                  </div>
-                </a>
-
-                <a
-                  href="https://engineering.uci.edu/news/2022/3/blue-box-wants-democratize-early-breast-cancer-detection"
-                  className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
-                >
-                  <FileText className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 group-hover:text-blue-700" />
-                  <div>
-                    <span className="text-blue-600 group-hover:text-blue-700 block mb-1">
-                      The Blue Box Wants to Democratize Early Breast Cancer Detection
-                    </span>
-                    <span className="text-sm text-gray-600">UCI Samueli School News • 2022</span>
-                  </div>
-                </a>
-                <a
-                  href="https://innovation.uci.edu/2021/01/whats-in-the-blue-box-breast-cancer-detection/"
-                  className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
-                >
-                  <FileText className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 group-hover:text-blue-700" />
-                  <div>
-                    <span className="text-blue-600 group-hover:text-blue-700 block mb-1">
-                      What’s in The Blue Box? Breast Cancer Detection
-                    </span>
-                    <span className="text-sm text-gray-600">UCI Beall Applied Innovation News • 2021</span>
-                  </div>
-                </a>
-                <a
-                  href="https://www.electromarket.com/noticia/22229/la-ingeniera-judit-giro-logra-el-james-dyson-award-con-su-detector-de.html"
-                  className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
-                >
-                  <FileText className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 group-hover:text-blue-700" />
-                  <div>
-                    <span className="text-blue-600 group-hover:text-blue-700 block mb-1">
-                      La ingeniera Judit Giró logra el James Dyson Award con su detector de cáncer de mama
-                    </span>
-                    <span className="text-sm text-gray-600">ElectroMarket • 2021</span>
-                  </div>
-                </a>
-
-                <a
-                  href="https://engineering.uci.edu/news/2020/12/samueli-school-researcher-wins-international-design-award"
-                  className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
-                >
-                  <FileText className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 group-hover:text-blue-700" />
-                  <div>
-                    <span className="text-blue-600 group-hover:text-blue-700 block mb-1">
-                      Samueli School Researcher Wins International Design Award
-                    </span>
-                    <span className="text-sm text-gray-600">UCI Samueli School News • 2020</span>
-                  </div>
-                </a>
-
-                <a
-                  href="https://www.dyson.es/james-dyson-award-2020"
-                  className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
-                >
-                  <FileText className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 group-hover:text-blue-700" />
-                  <div>
-                    <span className="text-blue-600 group-hover:text-blue-700 block mb-1">
-                      James Dyson Award 2020 Ganadores Internacionales
-                    </span>
-                    <span className="text-sm text-gray-600">James Dyson Foundation • 2020</span>
-                  </div>
-                </a>
-
-                <a
-                  href="https://www.espn.com/esports/story/_/id/26788969/uci-descraton-sharpens-college-league-legends-championship"
-                  className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
-                >
-                  <FileText className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 group-hover:text-blue-700" />
-                  <div>
-                    <span className="text-blue-600 group-hover:text-blue-700 block mb-1">
-                      UCI’s Descraton sharpens up for College League of Legends Championship
-                    </span>
-                    <span className="text-sm text-gray-600">ESPN • 2019</span>
-                  </div>
-                </a>
-
-                <a
-                  href="https://books.google.com/books?id=C5-l28dcz50C&lpg=PA1&pg=PA9#v=onepage&q&f=false"
-                  className="flex items-start p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 group"
-                >
-                  <FileText className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0 group-hover:text-blue-700" />
-                  <div>
-                    <span className="text-blue-600 group-hover:text-blue-700 block mb-1">
-                      PC Magazine: Adaptive Chips
-                    </span>
-                    <span className="text-sm text-gray-600">PC Magazine • 1998</span>
-                  </div>
-                </a>
-
-              </div>
+            <div className="contact-row">
+              <dt>Office</dt>
+              <dd>
+                Engineering Hall, Room 3207
+                <br />
+                UC Irvine, CA 92697
+              </dd>
             </div>
-          </div>
-        </section>
-        <section id="contact" className="py-20 bg-gray-100">
-          <div className="container mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-10 text-center">Contact</h2>
-            <div className="max-w-2xl mx-auto">
-              <div className="flex items-center mb-6">
-                <Mail className="w-6 h-6 text-blue-600 mr-4" />
-                <p className="text-lg">kurdahi@uci.edu</p>
-              </div>
-              <div className="flex items-center mb-6">
-                <MapPin className="w-6 h-6 text-blue-600 mr-4" />
-                <p className="text-lg">Engineering Hall, Room 3207, UC Irvine</p>
-              </div>
-              <div className="flex items-center mb-6">
-                <svg 
-                  className="w-6 h-6 text-blue-600 mr-4" 
-                  fill="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                </svg>
-                <a 
-                  href="https://www.linkedin.com/in/fadikurdahi/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-lg text-blue-600 hover:text-blue-800 transition-colors"
-                >
+            <div className="contact-row">
+              <dt>LinkedIn</dt>
+              <dd>
+                <a href="https://www.linkedin.com/in/fadikurdahi/" target="_blank" rel="noopener noreferrer">
                   linkedin.com/in/fadikurdahi
                 </a>
-              </div>
-              <div className="flex items-center mb-6">
-                <FontAwesomeIcon icon={faGoogleScholar} className="w-6 h-6 text-blue-600 mr-4" />
-                <a 
-                  href="https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-lg text-blue-600 hover:text-blue-800 transition-colors"
-                >
-                  Google Scholar Profile
-                </a>
-              </div>
+              </dd>
             </div>
-          </div>
+            <div className="contact-row">
+              <dt>Scholar</dt>
+              <dd>
+                <a
+                  href="https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Google Scholar profile
+                </a>
+              </dd>
+            </div>
+          </dl>
         </section>
-      </main>
-      <footer className="bg-gray-900 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2025 Prof. Fadi Kurdahi. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>
+
+        <footer className="colophon">
+          <span>© 2025 Fadi Kurdahi</span>
+          <span>UC Irvine</span>
+        </footer>
+      </div>
+
+      <div className="knobs">
+        <span className="label">Accent</span>
+        {ACCENTS.map((a) => (
+          <button
+            key={a.value}
+            className={`swatch${accent === a.value ? " active" : ""}`}
+            style={{ background: a.value }}
+            onClick={() => pickAccent(a.value)}
+            aria-label={a.label}
+          />
+        ))}
+      </div>
+    </>
   )
 }
-
