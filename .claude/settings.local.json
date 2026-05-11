@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm -rf /tmp/design-fetch2)",
+      "Bash(mkdir -p /tmp/design-fetch2)",
+      "Bash(cp /Users/michaelkurdahi/.claude/projects/-Users-michaelkurdahi-Professor-Kurdahi-Website/a693649e-ff86-48cd-96d2-8bf162d1ecd6/tool-results/webfetch-1778486665929-l5haj8.bin /tmp/design-fetch2/design.tar.gz)",
+      "Read(//tmp/**)",
+      "Bash(tar -xzf design.tar.gz)",
+      "Read(//private/tmp/**)",
+      "Bash(curl -s -o /tmp/page.html -w \"HTTP %{http_code} %{size_download}b\\\\n\" http://localhost:3000/)",
+      "Bash(perl -0777 -ne 'print \"$1\\\\n\" while /<aside class=\"nav\">\\(.*?\\)<\\\\/aside>/sg' /tmp/page.html)"
+    ]
+  }
+}

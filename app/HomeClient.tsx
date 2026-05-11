@@ -9,6 +9,17 @@ const SCHOLAR_PROFILE_URL = "https://scholar.google.com/citations?user=AF8zRPwAA
 type Track = "academic" | "industry"
 type PubSort = "recent" | "cited"
 
+const NAV_SECTIONS: { id: string; label: string }[] = [
+  { id: "bio", label: "About" },
+  { id: "career", label: "Appointments" },
+  { id: "education", label: "Education" },
+  { id: "awards", label: "Honors" },
+  { id: "research", label: "Research" },
+  { id: "publications", label: "Publications" },
+  { id: "media", label: "Media" },
+  { id: "contact", label: "Contact" },
+]
+
 const ACCENTS = [
   { value: "#3b3a36", label: "Graphite" },
   { value: "#3d4f3a", label: "Sage" },
@@ -198,6 +209,7 @@ export default function HomeClient({ data }: { data: ScholarData }) {
   const [pubSort, setPubSort] = useState<PubSort>("cited")
   const [theme, setTheme] = useState<"light" | "dark">("light")
   const [accent, setAccent] = useState<string>(ACCENTS[0].value)
+  const [activeSection, setActiveSection] = useState<string>(NAV_SECTIONS[0].id)
 
   const publications = pubSort === "cited" ? data.mostCited : data.mostRecent
 
@@ -239,6 +251,24 @@ export default function HomeClient({ data }: { data: ScholarData }) {
     return () => io.disconnect()
   }, [])
 
+  // Scrollspy — track which section is currently in view
+  useEffect(() => {
+    if (typeof IntersectionObserver === "undefined") return
+    const sections = NAV_SECTIONS
+      .map((s) => document.getElementById(s.id))
+      .filter((el): el is HTMLElement => Boolean(el))
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection(e.target.id)
+        })
+      },
+      { rootMargin: "-30% 0px -55% 0px" },
+    )
+    sections.forEach((s) => io.observe(s))
+    return () => io.disconnect()
+  }, [])
+
   const toggleTheme = () => {
     const next = theme === "light" ? "dark" : "light"
     setTheme(next)
@@ -258,15 +288,37 @@ export default function HomeClient({ data }: { data: ScholarData }) {
 
   return (
     <>
-      <div className="page">
-        <div className="bar">
-          <span className="mark">Fadi Kurdahi</span>
-          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-            <MoonIcon />
-            <SunIcon />
-          </button>
-        </div>
+      <div className="shell">
+        <aside className="nav">
+          <div>
+            <div className="mark">Fadi Kurdahi</div>
+            <div className="role">
+              Distinguished Professor
+              <br />
+              EECS · UC Irvine
+            </div>
+            <nav className="nav-links" aria-label="Section navigation">
+              {NAV_SECTIONS.map((s) => (
+                <a
+                  key={s.id}
+                  href={`#${s.id}`}
+                  className={activeSection === s.id ? "active" : ""}
+                >
+                  {s.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+          <div className="nav-foot">
+            <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+              <MoonIcon />
+              <SunIcon />
+            </button>
+            <span>© 2025</span>
+          </div>
+        </aside>
 
+        <div className="page">
         {/* HERO */}
         <header className="hero">
           <div className="hero-row fade">
@@ -522,6 +574,7 @@ export default function HomeClient({ data }: { data: ScholarData }) {
           <span>© 2025 Fadi Kurdahi</span>
           <span>UC Irvine</span>
         </footer>
+        </div>
       </div>
 
       <div className="knobs">
