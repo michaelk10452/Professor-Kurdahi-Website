@@ -32,6 +32,11 @@ const MAILTO = process.env.OPENALEX_MAILTO || "kurdahi@uci.edu"
 const SCHOLAR_URL = "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
 const UCI_START_YEAR = 1987
 
+// Authoritative values (Google Scholar) — override OpenAlex which undercounts
+// because it doesn't index every source Scholar does.
+const SCHOLAR_CITATIONS = 8341
+const SCHOLAR_H_INDEX = 46
+
 const SELECT_FIELDS = [
   "id",
   "doi",
@@ -129,8 +134,8 @@ async function loadFallback(): Promise<ScholarData> {
     const mostCited = (json.mostCited ?? []).map(toPub)
     return {
       stats: {
-        citations: 5707,
-        hIndex: 37,
+        citations: SCHOLAR_CITATIONS,
+        hIndex: SCHOLAR_H_INDEX,
         publications: 351,
         yearsAtUCI: new Date().getFullYear() - UCI_START_YEAR,
       },
@@ -142,8 +147,8 @@ async function loadFallback(): Promise<ScholarData> {
   } catch {
     return {
       stats: {
-        citations: 5707,
-        hIndex: 37,
+        citations: SCHOLAR_CITATIONS,
+        hIndex: SCHOLAR_H_INDEX,
         publications: 351,
         yearsAtUCI: new Date().getFullYear() - UCI_START_YEAR,
       },
@@ -169,8 +174,8 @@ export async function getScholarData(): Promise<ScholarData> {
 
     return {
       stats: {
-        citations: author.cited_by_count ?? 5707,
-        hIndex: author.summary_stats?.h_index ?? 37,
+        citations: SCHOLAR_CITATIONS,
+        hIndex: SCHOLAR_H_INDEX,
         publications: author.works_count ?? 351,
         yearsAtUCI: new Date().getFullYear() - UCI_START_YEAR,
       },

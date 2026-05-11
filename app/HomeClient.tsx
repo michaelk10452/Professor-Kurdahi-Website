@@ -179,10 +179,14 @@ function PublicationRow({ pub }: { pub: Publication }) {
         <h4>{pub.title}</h4>
         {meta && <p className="pub-meta">{meta}</p>}
       </div>
-      <span className="pub-cites" aria-label={`${pub.citations} citations`}>
-        {pub.citations.toLocaleString()}
-        <span className="pub-cites-label">cites</span>
-      </span>
+      {pub.citations > 0 ? (
+        <span className="pub-cites" aria-label={`${pub.citations} citations`}>
+          {pub.citations.toLocaleString()}
+          <span className="pub-cites-label">cites</span>
+        </span>
+      ) : (
+        <span className="pub-cites" aria-hidden="true" />
+      )}
     </a>
   )
 }
@@ -296,6 +300,8 @@ export default function HomeClient({ data }: { data: ScholarData }) {
               Distinguished Professor
               <br />
               EECS · UC Irvine
+              <br />
+              Center for Cyber-Physical Systems
             </div>
             <nav className="nav-links" aria-label="Section navigation">
               {NAV_SECTIONS.map((s) => (
@@ -334,9 +340,6 @@ export default function HomeClient({ data }: { data: ScholarData }) {
             </div>
             <div>
               <h1 className="hero-name">Fadi Kurdahi</h1>
-              <div className="hero-role">
-                Distinguished Professor<span className="sep">·</span>EECS<span className="sep">·</span>UC Irvine
-              </div>
             </div>
           </div>
           <p className="hero-lede fade">
