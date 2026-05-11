@@ -301,7 +301,7 @@ export default function HomeClient({ data }: { data: ScholarData }) {
               <br />
               EECS · UC Irvine
               <br />
-              Center for Cyber-Physical Systems
+              Director, Center for Embedded & Cyber-Physical Systems
             </div>
             <nav className="nav-links" aria-label="Section navigation">
               {NAV_SECTIONS.map((s) => (
