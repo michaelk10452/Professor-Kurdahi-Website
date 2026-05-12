@@ -209,7 +209,8 @@ async function loadFallback(): Promise<{ mostRecent: Publication[]; mostCited: P
 }
 
 export async function getScholarData(): Promise<ScholarData> {
-  // 1. Try Google Scholar (real citation counts)
+  // 1. Try a live Google Scholar scrape — gives the freshest numbers when
+  //    the build machine's IP isn't being throttled.
   try {
     const pubs = await getScholarPublications()
     return {
@@ -219,10 +220,24 @@ export async function getScholarData(): Promise<ScholarData> {
       source: "scholar",
     }
   } catch (err) {
-    console.warn("[scholar] Scholar scrape failed, trying OpenAlex:", err)
+    console.warn("[scholar] Scholar scrape failed, using bundled fallback:", err)
   }
 
-  // 2. Fall back to OpenAlex (numbers undercount but always available)
+  // 2. Fall back to the JSON snapshot in data/publications.json. That file
+  //    is produced by `node scripts/update_publications.mjs` from a machine
+  //    that Scholar trusts, so the numbers still match Scholar exactly.
+  const local = await loadFallback()
+  if (local.mostCited.length > 0 || local.mostRecent.length > 0) {
+    return {
+      mostCited: local.mostCited,
+      mostRecent: local.mostRecent,
+      updatedAt: new Date().toISOString(),
+      source: "fallback",
+    }
+  }
+
+  // 3. Last resort — OpenAlex. Its citation counts are lower than Scholar's
+  //    because it indexes fewer sources, but it never blocks.
   try {
     const pubs = await getOpenAlexPublications()
     return {
@@ -232,14 +247,12 @@ export async function getScholarData(): Promise<ScholarData> {
       source: "openalex",
     }
   } catch (err) {
-    console.warn("[scholar] OpenAlex fetch failed, using static fallback:", err)
+    console.warn("[scholar] OpenAlex fetch failed, returning empty:", err)
   }
 
-  // 3. Final fallback to bundled JSON
-  const local = await loadFallback()
   return {
-    mostCited: local.mostCited,
-    mostRecent: local.mostRecent,
+    mostCited: [],
+    mostRecent: [],
     updatedAt: new Date().toISOString(),
     source: "fallback",
   }

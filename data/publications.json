@@ -1,98 +1,360 @@
 {
   "mostRecent": [
     {
-      "id": 1,
-      "title": "Mixed-Precision Quantization for Language Models: Techniques and Prospects",
-      "authors": "M Rakka, M Fournarakis, O Krestinskaya, J Bazzi, KN Salama, F Kurdahi",
-      "venue": "arXiv preprint arXiv:2510.16805",
-      "year": 2025,
+      "id": "AF8zRPwAAAAJ:z6xuaG2dYH0C",
+      "title": "EdgeCIM: A Hardware-Software Co-Design for CIM-Based Acceleration of Small Language Models",
+      "authors": "J Bazzi, M Rakka, F Kurdahi, ME Fouda, A Eltawil",
+      "venue": "arXiv preprint arXiv:2604.11512",
+      "year": 2026,
       "citations": 0,
-      "link": "https://arxiv.org/abs/2510.16805"
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:z6xuaG2dYH0C"
     },
     {
-      "id": 2,
+      "id": "AF8zRPwAAAAJ:rTD5ala9j4wC",
+      "title": "Tracking diet and nutrition using wearable biological internet-of-things",
+      "authors": "P Tseng, M Al Faruque, F Kurdahi",
+      "venue": "US Patent 12,536,788",
+      "year": 2026,
+      "citations": 0,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:rTD5ala9j4wC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:qE4H1tSSYIIC",
+      "title": "Mixed-Precision Quantization for Language Models: Techniques and Prospects",
+      "authors": "M Rakka, M Fournarakis, O Krestinskaya, J Bazzi, KN Salama, F Kurdahi, ...",
+      "venue": "arXiv preprint arXiv:2510.16805",
+      "year": 2025,
+      "citations": 3,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:qE4H1tSSYIIC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:eAlLMO4JVmQC",
       "title": "GDS2SEM: Diffusion-based Layout-to-SEM Post-Fabrication Emulation for IC Validation",
       "authors": "W Amer, S Nassif, F Kurdahi",
       "venue": "2025 IEEE International Symposium on Circuits and Systems (ISCAS), 1-5",
       "year": 2025,
-      "citations": 0,
-      "link": "https://ieeexplore.ieee.org/abstract/document/11043512"
+      "citations": 1,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:eAlLMO4JVmQC"
     },
     {
-      "id": 3,
-      "title": "SoftmAP: Software-Hardware Co-design for Integer-Only Softmax on Associative Processors",
+      "id": "AF8zRPwAAAAJ:ghEM2AJqZyQC",
+      "title": "SoftmAP: Software-Hardware Co-Design for Integer-Only Softmax on Associative Processors",
       "authors": "M Rakka, J Li, G Dai, A Eltawil, ME Fouda, F Kurdahi",
       "venue": "2025 Design, Automation & Test in Europe Conference (DATE), 1-7",
       "year": 2025,
-      "citations": 4,
-      "link": "https://ieeexplore.ieee.org/abstract/document/10992862"
+      "citations": 10,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:ghEM2AJqZyQC"
     },
     {
-      "id": 4,
-      "title": "Passive Wireless Body Joint-Monitoring Networks with Textile-Integrated, Strongly Coupled Magnetic Resonators",
-      "authors": "F Ye, A Hajiaghajani, A Zargari, A Escobar, H Qin, L Li, C Qian, KKH Dia",
+      "id": "AF8zRPwAAAAJ:X9ykpCP0fEIC",
+      "title": "Passive Wireless Body Joint‐Monitoring Networks with Textile‐Integrated, Strongly Coupled Magnetic Resonators",
+      "authors": "F Ye, A Hajiaghajani, A Zargari, A Escobar, H Qin, L Li, C Qian, KKH Dia, ...",
       "venue": "Advanced Electronic Materials 11 (3), 2400450",
       "year": 2025,
-      "citations": 2,
-      "link": "https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/aelm.202400450"
+      "citations": 3,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:X9ykpCP0fEIC"
     },
     {
-      "id": 5,
+      "id": "AF8zRPwAAAAJ:zdjWy_NXXwUC",
       "title": "HDRLPIM: A Simulator for Hyper-Dimensional Reinforcement Learning Based on Processing In-Memory",
       "authors": "M Rakka, W Amer, H Chen, M Imani, F Kurdahi",
       "venue": "ACM Journal on Emerging Technologies in Computing Systems 20 (4), 1-17",
       "year": 2025,
+      "citations": 2,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:zdjWy_NXXwUC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:1tZ8xJnm2c8C",
+      "title": "FPonAP: Implementation of Floating Point Operations on Associative Processors",
+      "authors": "W Amer, M Rakka, F Kurdahi",
+      "venue": "IEEE Embedded Systems Letters 16 (4), 389-392",
+      "year": 2024,
+      "citations": 0,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:1tZ8xJnm2c8C"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:YlPif8NxrbYC",
+      "title": "A nanoelectromechanical energy-reversible switch: theoretical study and verification by experiment of its applicability to adiabatic computing",
+      "authors": "AM Mayet, MA Muqeet, F Kurdahi",
+      "venue": "Journal of Computational Electronics 23 (6), 1438-1447",
+      "year": 2024,
+      "citations": 0,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:YlPif8NxrbYC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:wE-fMHVdjMkC",
+      "title": "Bf-imna: A bit fluid in-memory neural architecture for neural network acceleration",
+      "authors": "M Rakka, R Karami, AM Eltawil, ME Fouda, F Kurdahi",
+      "venue": "arXiv preprint arXiv:2411.01417",
+      "year": 2024,
+      "citations": 7,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:wE-fMHVdjMkC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:kJDgFkosVoMC",
+      "title": "Mitigating the impact of ReRAM IV nonlinearity and IR drop via fast offline network training",
+      "authors": "S Lee, ME Fouda, C Quan, J Lee, AE Eltawil, F Kurdahi",
+      "venue": "IEEE Transactions on Computer-Aided Design of Integrated Circuits and …",
+      "year": 2024,
+      "citations": 3,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:kJDgFkosVoMC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:hSRAE-fF4OAC",
+      "title": "Neural architecture search for in-memory computing-based deep learning accelerators",
+      "authors": "O Krestinskaya, ME Fouda, H Benmeziane, K El Maghraoui, A Sebastian, ...",
+      "venue": "Nature Reviews Electrical Engineering 1 (6), 374-390",
+      "year": 2024,
+      "citations": 38,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:hSRAE-fF4OAC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:qwy9JoKyICEC",
+      "title": "A review of state-of-the-art mixed-precision neural network frameworks",
+      "authors": "M Rakka, ME Fouda, P Khargonekar, F Kurdahi",
+      "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence 46 (12), 7793 …",
+      "year": 2024,
+      "citations": 39,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:qwy9JoKyICEC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:v6i8RKmR8ToC",
+      "title": "Unraveling Sensor Correlations in Multi-Sensor Wearable Devices for Smart Anomaly Detection",
+      "authors": "R Yasaei, AHA Zargari, M Al Faruque, F Kurdahi",
+      "venue": "2024 IEEE 17th Dallas Circuits and Systems Conference (DCAS), 1-5",
+      "year": 2024,
+      "citations": 2,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:v6i8RKmR8ToC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:2v_ZtQDX9iAC",
+      "title": "Sub-0.3 volt amorphous metal WNx based NEMS switch with 8 trillion cycles",
+      "authors": "AM Mayet, MA Muqeet, HH Alhashim, F Kurdahi, E Eftekhari-Zadeh",
+      "venue": "Frontiers in Materials 10, 1337925",
+      "year": 2024,
       "citations": 1,
-      "link": "https://dl.acm.org/doi/full/10.1145/3695875"
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:2v_ZtQDX9iAC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:8Xgff_V0N9gC",
+      "title": "Error-triggered learning of multi-layer memristive spiking neural networks",
+      "authors": "M Fouda, E NEFTCI, F Kurdahi, A Eltawil, M PAYVAND",
+      "venue": "US Patent App. 18/037,024",
+      "year": 2024,
+      "citations": 1,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:8Xgff_V0N9gC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:mUJArPsKIAAC",
+      "title": "CAPTIVE: Constrained adversarial perturbations to thwart IC reverse engineering",
+      "authors": "AHA Zargari, M AshrafiAmiri, M Seo, SM Pudukotai Dinakarrao, ...",
+      "venue": "Information 14 (12), 656",
+      "year": 2023,
+      "citations": 6,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:mUJArPsKIAAC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:qe6vwMD2xtsC",
+      "title": "Amphibious epidermal area networks for uninterrupted wireless data and power transfer",
+      "authors": "A Hajiaghajani, P Rwei, AH Afandizadeh Zargari, AR Escobar, F Kurdahi, ...",
+      "venue": "Nature Communications 14 (1), 7522",
+      "year": 2023,
+      "citations": 30,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:qe6vwMD2xtsC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:Xz60mAmATU4C",
+      "title": "Hardware Implementation and Evaluation of an Information Processing Factory",
+      "authors": "W Amer, M Rakka, R Karami, M Seo, MAR Saghir, R Kanj, FJ Kurdahi",
+      "venue": "2023 IFIP/IEEE 31st International Conference on Very Large Scale Integration …",
+      "year": 2023,
+      "citations": 0,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:Xz60mAmATU4C"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:CYCckWUYoCcC",
+      "title": "SAFER: Safety assurances for emergent behavior",
+      "authors": "CB De Melo, M Ashrafiamiri, M Seo, F Kurdahi, N Dutt",
+      "venue": "IEEE Design & Test 41 (4), 17-25",
+      "year": 2023,
+      "citations": 1,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&sortby=pubdate&citation_for_view=AF8zRPwAAAAJ:CYCckWUYoCcC"
     }
   ],
   "mostCited": [
     {
-      "id": 1,
-      "title": "MorphoSys: An Integrated Reconfigurable System for Data-Parallel and Computation-Intensive Applications",
-      "authors": "H. Singh, M.-H. Lee, G. Lu, F.J. Kurdahi, N. Bagherzadeh, E.M. Chaves Filho",
-      "venue": "IEEE Transactions on Computers",
+      "id": "AF8zRPwAAAAJ:u5HHmVD_uO8C",
+      "title": "MorphoSys: an integrated reconfigurable system for data-parallel and computation-intensive applications",
+      "authors": "H Singh, MH Lee, G Lu, FJ Kurdahi, N Bagherzadeh, EM Chaves Filho",
+      "venue": "IEEE transactions on computers 49 (5), 465-481",
       "year": 2000,
-      "citations": 1319,
-      "link": "https://dl.acm.org/doi/10.1109/12.859540"
+      "citations": 1282,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:u5HHmVD_uO8C"
     },
     {
-      "id": 2,
-      "title": "REAL: A Program for REgister ALlocation",
-      "authors": "F.J. Kurdahi, A.C. Parker",
-      "venue": "Proceedings of the 24th ACM/IEEE Design Automation Conference",
+      "id": "AF8zRPwAAAAJ:u-x6o8ySG0sC",
+      "title": "REAL: A program for register allocation",
+      "authors": "FJ Kurdahi, AC Parker",
+      "venue": "Proceedings of the 24th ACM/IEEE Design Automation Conference, 210-215",
       "year": 1987,
-      "citations": 452,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+      "citations": 439,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:u-x6o8ySG0sC"
     },
     {
-      "id": 3,
-      "title": "Design and Implementation of the MorphoSys Reconfigurable Computing Processor",
-      "authors": "M.-H. Lee, H. Singh, G. Lu, N. Bagherzadeh, F.J. Kurdahi, E.M.C. Filho",
-      "venue": "The Journal of VLSI Signal Processing",
+      "id": "AF8zRPwAAAAJ:d1gkVwhDpl0C",
+      "title": "Design and implementation of the MorphoSys reconfigurable computing processor",
+      "authors": "MH Lee, H Singh, G Lu, N Bagherzadeh, FJ Kurdahi, EMC Filho, ...",
+      "venue": "The Journal of VLSI Signal Processing 24 (2), 147-164",
       "year": 2000,
-      "citations": 228,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+      "citations": 219,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:d1gkVwhDpl0C"
     },
     {
-      "id": 4,
-      "title": "Power-Aware Scheduling Under Timing Constraints for Mission-Critical Embedded Systems",
-      "authors": "J. Liu, P.H. Chou, N. Bagherzadeh, F. Kurdahi",
-      "venue": "Proceedings of the 38th Annual Design Automation Conference",
+      "id": "AF8zRPwAAAAJ:9yKSN-GCB0IC",
+      "title": "Power-aware scheduling under timing constraints for mission-critical embedded systems",
+      "authors": "J Liu, PH Chou, N Bagherzadeh, F Kurdahi",
+      "venue": "Proceedings of the 38th annual Design Automation Conference, 840-845",
       "year": 2001,
-      "citations": 154,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+      "citations": 152,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:9yKSN-GCB0IC"
     },
     {
-      "id": 5,
-      "title": "Techniques for Area Estimation of VLSI Layouts",
-      "authors": "F.J. Kurdahi, A.C. Parker",
-      "venue": "IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems",
+      "id": "AF8zRPwAAAAJ:2osOgNQ5qMEC",
+      "title": "Techniques for area estimation of VLSI layouts",
+      "authors": "FJ Kurdahi, AC Parker",
+      "venue": "Computer-Aided Design of Integrated Circuits and Systems, IEEE Transactions …",
       "year": 1989,
-      "citations": 151,
-      "link": "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
+      "citations": 147,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:2osOgNQ5qMEC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:kzcSZmkxUKAC",
+      "title": "Textile-integrated metamaterials for near-field multibody area networks",
+      "authors": "A Hajiaghajani, AH Afandizadeh Zargari, M Dautta, A Jimenez, F Kurdahi, ...",
+      "venue": "Nature Electronics 4 (11), 808-817",
+      "year": 2021,
+      "citations": 126,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:kzcSZmkxUKAC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:kzcrU_BdoSEC",
+      "title": "DIGITAL SIGNAL PROCESSOR FOR WIRELESS BASEBAND PROCESSING",
+      "authors": "BB Mohebbi, FJ Kurdahi",
+      "venue": "EP Patent 1,436,721",
+      "year": 2010,
+      "citations": 115,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:kzcrU_BdoSEC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:UeHWp8X0CEIC",
+      "title": "On clustering for maximal regularity extraction",
+      "authors": "DS Rao, FJ Kurdahi",
+      "venue": "IEEE transactions on Computer-aided Design of Integrated Circuits and …",
+      "year": 1993,
+      "citations": 115,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:UeHWp8X0CEIC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:qjMakFHDy7sC",
+      "title": "A framework for reconfigurable computing: Task scheduling and context management",
+      "authors": "R Maestre, FJ Kurdahi, M Fernández, R Hermida, N Bagherzadeh, ...",
+      "venue": "IEEE Transactions on Very Large Scale Integration (VLSI) Systems 9 (6), 858-873",
+      "year": 2001,
+      "citations": 113,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:qjMakFHDy7sC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:g5m5HwL7SMYC",
+      "title": "MorphoSys: An integrated re-configurable architecture",
+      "authors": "G Lu, H Singh, M Lee, N Bagherzadeh, FJ Kurdahi, E MC Filho",
+      "venue": "Proceedings of the 5th International Euro-Par Conference Toulouse, France …",
+      "year": 1999,
+      "citations": 100,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:g5m5HwL7SMYC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:vDZJ-YLwNdEC",
+      "title": "Modeling and analysis of passive switching crossbar arrays",
+      "authors": "ME Fouda, AM Eltawil, F Kurdahi",
+      "venue": "IEEE Transactions on Circuits and Systems I: Regular Papers 65 (1), 270-282",
+      "year": 2017,
+      "citations": 98,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:vDZJ-YLwNdEC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:IjCSPb-OGe4C",
+      "title": "On the intrinsic Rent parameter and spectra-based partitioning methodologies",
+      "authors": "L Hagen, AB Kahng, FJ Kurdahi, C Ramachandran",
+      "venue": "IEEE Transactions on computer-aided design of integrated circuits and …",
+      "year": 1994,
+      "citations": 98,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:IjCSPb-OGe4C"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:8d8msizDQcsC",
+      "title": "Memristor multiport readout: A closed-form solution for sneak paths",
+      "authors": "MA Zidan, AM Eltawil, F Kurdahi, HAH Fahmy, KN Salama",
+      "venue": "IEEE Transactions on Nanotechnology 13 (2), 274-282",
+      "year": 2014,
+      "citations": 96,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:8d8msizDQcsC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:W7OEmFMy1HYC",
+      "title": "The MorphoSys parallel reconfigurable system",
+      "authors": "G Lu, H Singh, MH Lee, N Bagherzadeh, F Kurdahi, E Filho",
+      "venue": "Euro-Par’99 Parallel Processing, 727-734",
+      "year": 1999,
+      "citations": 94,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:W7OEmFMy1HYC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:YsrPvlHIBpEC",
+      "title": "An accurate non-accelerometer-based PPG motion artifact removal technique using CycleGAN",
+      "authors": "AH Afandizadeh Zargari, SAH Aqajari, H Khodabandeh, A Rahmani, ...",
+      "venue": "ACM Transactions on Computing for Healthcare 4 (1), 1-14",
+      "year": 2023,
+      "citations": 89,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:YsrPvlHIBpEC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:Tyk-4Ss8FVUC",
+      "title": "MorphoSys: case study of a reconfigurable computing system targeting multimedia applications",
+      "authors": "H Singh, G Lu, E Filho, R Maestre, MH Lee, F Kurdahi, N Bagherzadeh",
+      "venue": "Proceedings of the 37th Annual Design Automation Conference, 573-578",
+      "year": 2000,
+      "citations": 86,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:Tyk-4Ss8FVUC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:YsMSGLbcyi4C",
+      "title": "Partitioning by regularity extraction",
+      "authors": "DS Rao, FJ Kurdahi",
+      "venue": "[1992] Proceedings 29th ACM/IEEE Design Automation Conference, 235-238",
+      "year": 1992,
+      "citations": 79,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:YsMSGLbcyi4C"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:zYLM7Y9cAGgC",
+      "title": "A compiler framework for mapping applications to a coarse-grained reconfigurable computer architecture",
+      "authors": "G Venkataramani, W Najjar, F Kurdahi, N Bagherzadeh, W Bohm",
+      "venue": "Proceedings of the 2001 International conference on Compilers, architecture …",
+      "year": 2001,
+      "citations": 78,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:zYLM7Y9cAGgC"
+    },
+    {
+      "id": "AF8zRPwAAAAJ:WZBGuue-350C",
+      "title": "VITERBI CONVOLUTIONAL CODING METHOD AND APPARATUS",
+      "authors": "S SAFAVI, A NIKTASH, B MOHEBBI, F KURDAHI",
+      "venue": "WO Patent WO/2003/044,962",
+      "year": 2003,
+      "citations": 74,
+      "link": "https://scholar.google.com/citations?view_op=view_citation&hl=en&user=AF8zRPwAAAAJ&citation_for_view=AF8zRPwAAAAJ:WZBGuue-350C"
     }
   ],
-  "lastUpdated": "2026-01-21T00:00:00Z",
-  "note": "Top 5 most recent and top 5 most cited publications from Professor Fadi Kurdahi's research. This data is automatically updated every 6 months via GitHub Action."
+  "lastUpdated": "2026-05-12T23:31:49.288Z",
+  "source": "google-scholar",
+  "note": "Top publications from Google Scholar profile, pre-baked at update time. Used as fallback when live Scholar scrape is blocked."
 }

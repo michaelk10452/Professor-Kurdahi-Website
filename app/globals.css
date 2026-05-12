@@ -133,7 +133,7 @@ a { color: inherit; }
 
 /* Hero */
 .hero {
-  padding: 56px 0 56px;
+  padding: 40px 0 28px;
   border-bottom: 1px solid var(--rule-soft);
 }
 .hero-row {
@@ -141,7 +141,6 @@ a { color: inherit; }
   grid-template-columns: 92px 1fr;
   gap: 24px;
   align-items: center;
-  margin-bottom: 44px;
 }
 .portrait {
   width: 92px; height: 92px;
