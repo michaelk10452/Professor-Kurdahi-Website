@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import type { Publication, ScholarData } from "@/lib/scholar"
 
 const SCHOLAR_PROFILE_URL = "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
@@ -118,58 +118,6 @@ function PlayIcon() {
   )
 }
 
-function Stat({ target, format, label, prefix }: { target: number; format?: (n: number) => string; label: string; prefix?: React.ReactNode }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const [value, setValue] = useState<number | null>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    if (typeof IntersectionObserver === "undefined") {
-      setValue(target)
-      return
-    }
-    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches
-    if (reduced) {
-      setValue(target)
-      return
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (!e.isIntersecting) return
-          const duration = 1400
-          const start = performance.now()
-          const tick = (t: number) => {
-            const k = Math.min(1, (t - start) / duration)
-            const eased = 1 - Math.pow(1 - k, 3)
-            setValue(Math.round(target * eased))
-            if (k < 1) requestAnimationFrame(tick)
-          }
-          requestAnimationFrame(tick)
-          io.unobserve(e.target)
-        })
-      },
-      { threshold: 0.5 },
-    )
-    io.observe(el)
-    return () => io.disconnect()
-  }, [target])
-
-  const display = value === null ? "—" : format ? format(value) : value.toLocaleString()
-
-  return (
-    <div className="stat">
-      <span className="stat-num">
-        {prefix}
-        <span ref={ref}>{display}</span>
-      </span>
-      <span className="stat-label">{label}</span>
-    </div>
-  )
-}
-
 function PublicationRow({ pub }: { pub: Publication }) {
   const meta = [pub.authors, pub.venue].filter(Boolean).join(" · ")
   return (
@@ -209,13 +157,25 @@ function PublicationsSkeleton() {
 }
 
 export default function HomeClient({ data }: { data: ScholarData }) {
+  const INITIAL_PUBS = 5
+  const PUBS_INCREMENT = 5
+
   const [track, setTrack] = useState<Track>("academic")
   const [pubSort, setPubSort] = useState<PubSort>("cited")
+  const [pubsShown, setPubsShown] = useState<number>(INITIAL_PUBS)
   const [theme, setTheme] = useState<"light" | "dark">("light")
   const [accent, setAccent] = useState<string>(ACCENTS[0].value)
   const [activeSection, setActiveSection] = useState<string>(NAV_SECTIONS[0].id)
 
-  const publications = pubSort === "cited" ? data.mostCited : data.mostRecent
+  const allPublications = pubSort === "cited" ? data.mostCited : data.mostRecent
+  const visiblePublications = allPublications.slice(0, pubsShown)
+  const canShowMore = pubsShown < allPublications.length
+  const canShowLess = pubsShown > INITIAL_PUBS
+
+  // Reset count when switching sort
+  useEffect(() => {
+    setPubsShown(INITIAL_PUBS)
+  }, [pubSort])
 
   // Sync theme + accent from localStorage (in addition to the pre-hydration script in layout)
   useEffect(() => {
@@ -342,9 +302,6 @@ export default function HomeClient({ data }: { data: ScholarData }) {
               <h1 className="hero-name">Fadi Kurdahi</h1>
             </div>
           </div>
-          <p className="hero-lede fade">
-            Working at the intersection of VLSI, embedded systems, and the people who design them — since 1987.
-          </p>
         </header>
 
         {/* BIO */}
@@ -369,16 +326,6 @@ export default function HomeClient({ data }: { data: ScholarData }) {
               I earned my M.S. and Ph.D. in Computer Engineering from USC, and my undergraduate degree from the American
               University of Beirut. I'm a Fellow of IEEE and AAAS.
             </p>
-          </div>
-        </section>
-
-        {/* STATS */}
-        <section id="stats" style={{ border: "none", paddingTop: 32, paddingBottom: 32 }}>
-          <div className="stats fade">
-            <Stat target={data.stats.citations} label="Citations" />
-            <Stat target={data.stats.hIndex} label="h-index" prefix={<><span className="h">h</span>·</>} format={(n) => String(n)} />
-            <Stat target={data.stats.publications} label="Publications" format={(n) => String(n)} />
-            <Stat target={data.stats.yearsAtUCI} label="Years at UCI" format={(n) => String(n)} />
           </div>
         </section>
 
@@ -473,15 +420,39 @@ export default function HomeClient({ data }: { data: ScholarData }) {
                   Most recent
                 </button>
               </div>
-              <span>{data.stats.publications.toLocaleString()} indexed</span>
+              <span>Live from Google Scholar</span>
             </div>
 
-            {publications.length > 0 ? (
-              <div className="pub-list">
-                {publications.map((p) => (
-                  <PublicationRow key={p.id} pub={p} />
-                ))}
-              </div>
+            {allPublications.length > 0 ? (
+              <>
+                <div className="pub-list">
+                  {visiblePublications.map((p) => (
+                    <PublicationRow key={p.id} pub={p} />
+                  ))}
+                </div>
+                <div className="pub-actions">
+                  {canShowMore && (
+                    <button
+                      type="button"
+                      className="pub-more"
+                      onClick={() =>
+                        setPubsShown((n) => Math.min(n + PUBS_INCREMENT, allPublications.length))
+                      }
+                    >
+                      Show more
+                    </button>
+                  )}
+                  {canShowLess && (
+                    <button
+                      type="button"
+                      className="pub-more pub-more-quiet"
+                      onClick={() => setPubsShown(INITIAL_PUBS)}
+                    >
+                      Show fewer
+                    </button>
+                  )}
+                </div>
+              </>
             ) : (
               <PublicationsSkeleton />
             )}

@@ -449,6 +449,32 @@ a { color: inherit; }
 }
 .pub-link:hover { text-decoration-color: var(--ink); }
 
+.pub-actions {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  margin-top: 18px;
+}
+.pub-more {
+  background: transparent;
+  border: none;
+  padding: 4px 0;
+  font: inherit;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  cursor: pointer;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 4px;
+  transition: color .2s, border-color .2s;
+}
+.pub-more:hover { border-bottom-color: var(--ink); }
+.pub-more-quiet {
+  color: var(--ink-mute);
+  border-bottom-color: transparent;
+}
+.pub-more-quiet:hover { color: var(--ink); border-bottom-color: var(--rule); }
+
 /* Media */
 .media-sub {
   font-size: 11px;

@@ -11,33 +11,114 @@ export type Publication = {
   link: string
 }
 
-export type ScholarStats = {
-  citations: number
-  hIndex: number
-  publications: number
-  yearsAtUCI: number
-}
-
 export type ScholarData = {
-  stats: ScholarStats
   mostRecent: Publication[]
   mostCited: Publication[]
   updatedAt: string
-  source: "openalex" | "fallback"
+  source: "scholar" | "openalex" | "fallback"
 }
 
-const OPENALEX_AUTHOR_ID = "A5008034875" // Fadi Kurdahi, UC Irvine
+const SCHOLAR_USER = "AF8zRPwAAAAJ"
+const SCHOLAR_BASE = "https://scholar.google.com"
+const SCHOLAR_URL = `${SCHOLAR_BASE}/citations?user=${SCHOLAR_USER}&hl=en`
+const PAGE_SIZE = 20
+
+const OPENALEX_AUTHOR_ID = "A5008034875"
 const OPENALEX_BASE = "https://api.openalex.org"
 const MAILTO = process.env.OPENALEX_MAILTO || "kurdahi@uci.edu"
-const SCHOLAR_URL = "https://scholar.google.com/citations?user=AF8zRPwAAAAJ&hl"
-const UCI_START_YEAR = 1987
 
-// Authoritative values (Google Scholar) — override OpenAlex which undercounts
-// because it doesn't index every source Scholar does.
-const SCHOLAR_CITATIONS = 8341
-const SCHOLAR_H_INDEX = 46
+const UA =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Safari/605.1.15"
 
-const SELECT_FIELDS = [
+function decodeEntities(s: string): string {
+  return s
+    .replace(/&amp;/g, "&")
+    .replace(/&#39;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&nbsp;/g, " ")
+}
+
+function stripTags(s: string): string {
+  return s.replace(/<[^>]*>/g, "")
+}
+
+function parseScholarPubs(html: string): Publication[] {
+  const result: Publication[] = []
+  const rowRe = /<tr class="gsc_a_tr">([\s\S]*?)<\/tr>/g
+  let m: RegExpExecArray | null
+  while ((m = rowRe.exec(html))) {
+    const row = m[1]
+
+    // Title anchor: attribute order isn't fixed in Scholar's markup, so grab
+    // the full anchor first and pull href/title body out separately.
+    const titleAnchor = row.match(/<a\b[^>]*class="gsc_a_at"[^>]*>([\s\S]*?)<\/a>/)
+    const hrefMatch = titleAnchor?.[0].match(/\bhref="([^"]+)"/)
+    if (!titleAnchor || !hrefMatch) continue
+
+    const grayMatches = [...row.matchAll(/<div class="gs_gray">([\s\S]*?)<\/div>/g)]
+    const citesMatch = row.match(/<a\b[^>]*class="gsc_a_ac[^"]*"[^>]*>(\d+)<\/a>/)
+    const yearMatch = row.match(/<span class="gsc_a_h[^"]*">(\d{4})<\/span>/)
+    if (!yearMatch) continue
+
+    const authors = decodeEntities(stripTags(grayMatches[0]?.[1] || "")).trim()
+    const venue = decodeEntities(stripTags(grayMatches[1]?.[1] || ""))
+      .replace(/,\s*\d{4}\s*$/, "")
+      .trim()
+
+    const href = decodeEntities(hrefMatch[1])
+    const idMatch = href.match(/citation_for_view=([^&]+)/)
+    const id = idMatch ? idMatch[1] : href
+
+    result.push({
+      id,
+      title: decodeEntities(stripTags(titleAnchor[1])).trim(),
+      authors,
+      venue,
+      year: Number(yearMatch[1]),
+      citations: citesMatch ? Number(citesMatch[1]) : 0,
+      link: href.startsWith("http") ? href : `${SCHOLAR_BASE}${href}`,
+    })
+  }
+  return result
+}
+
+async function fetchScholarPage(sortByPubDate: boolean): Promise<string> {
+  const url = sortByPubDate
+    ? `${SCHOLAR_URL}&cstart=0&pagesize=${PAGE_SIZE}&sortby=pubdate`
+    : `${SCHOLAR_URL}&cstart=0&pagesize=${PAGE_SIZE}`
+  const res = await fetch(url, {
+    next: { revalidate: 86400 },
+    headers: {
+      "User-Agent": UA,
+      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      "Accept-Language": "en-US,en;q=0.9",
+    },
+  })
+  if (!res.ok) throw new Error(`Scholar HTTP ${res.status}`)
+  return await res.text()
+}
+
+async function getScholarPublications(): Promise<{
+  mostCited: Publication[]
+  mostRecent: Publication[]
+}> {
+  const [citedHtml, recentHtml] = await Promise.all([
+    fetchScholarPage(false),
+    fetchScholarPage(true),
+  ])
+  const mostCited = parseScholarPubs(citedHtml)
+  const mostRecent = parseScholarPubs(recentHtml)
+  if (mostCited.length === 0 && mostRecent.length === 0) {
+    throw new Error("Scholar response had no parseable rows (likely a CAPTCHA)")
+  }
+  return { mostCited, mostRecent }
+}
+
+// ───────── OpenAlex fallback ─────────
+
+const OA_SELECT = [
   "id",
   "doi",
   "title",
@@ -48,12 +129,6 @@ const SELECT_FIELDS = [
   "best_oa_location",
   "authorships",
 ].join(",")
-
-type OpenAlexAuthor = {
-  works_count?: number
-  cited_by_count?: number
-  summary_stats?: { h_index?: number }
-}
 
 type OpenAlexWork = {
   id?: string
@@ -70,7 +145,7 @@ type OpenAlexWork = {
   authorships?: Array<{ author?: { display_name?: string | null } | null }> | null
 }
 
-function authorsLabel(authorships: OpenAlexWork["authorships"]): string {
+function oaAuthors(authorships: OpenAlexWork["authorships"]): string {
   if (!authorships?.length) return ""
   const names = authorships
     .map((a) => a?.author?.display_name)
@@ -80,113 +155,93 @@ function authorsLabel(authorships: OpenAlexWork["authorships"]): string {
   return `${names.slice(0, 6).join(", ")}, et al.`
 }
 
-function venueLabel(work: OpenAlexWork): string {
-  return work.primary_location?.source?.display_name?.trim() || ""
-}
-
-function workLink(work: OpenAlexWork): string {
-  return (
-    work.best_oa_location?.landing_page_url ||
-    work.primary_location?.landing_page_url ||
-    work.doi ||
-    SCHOLAR_URL
-  )
-}
-
-function normalize(works: OpenAlexWork[]): Publication[] {
+function oaNormalize(works: OpenAlexWork[]): Publication[] {
   return works
     .filter((w) => w.title && w.publication_year)
     .map((w) => ({
       id: w.id ?? `${w.title}-${w.publication_year}`,
       title: w.title!.trim(),
-      authors: authorsLabel(w.authorships),
-      venue: venueLabel(w),
+      authors: oaAuthors(w.authorships),
+      venue: w.primary_location?.source?.display_name?.trim() || "",
       year: w.publication_year!,
       citations: w.cited_by_count ?? 0,
-      link: workLink(w),
+      link:
+        w.best_oa_location?.landing_page_url ||
+        w.primary_location?.landing_page_url ||
+        w.doi ||
+        SCHOLAR_URL,
     }))
 }
 
-async function fetchJSON<T>(url: string): Promise<T> {
-  const sep = url.includes("?") ? "&" : "?"
-  const res = await fetch(`${url}${sep}mailto=${encodeURIComponent(MAILTO)}`, {
-    next: { revalidate: 86400 },
-    headers: { Accept: "application/json" },
-  })
-  if (!res.ok) throw new Error(`OpenAlex ${res.status} on ${url}`)
-  return (await res.json()) as T
+async function getOpenAlexPublications(): Promise<{
+  mostCited: Publication[]
+  mostRecent: Publication[]
+}> {
+  const headers = { Accept: "application/json" }
+  const cited = `${OPENALEX_BASE}/works?filter=authorships.author.id:${OPENALEX_AUTHOR_ID}&sort=cited_by_count:desc&per_page=15&select=${OA_SELECT}&mailto=${encodeURIComponent(MAILTO)}`
+  const recent = `${OPENALEX_BASE}/works?filter=authorships.author.id:${OPENALEX_AUTHOR_ID}&sort=publication_date:desc&per_page=15&select=${OA_SELECT}&mailto=${encodeURIComponent(MAILTO)}`
+  const [c, r] = await Promise.all([
+    fetch(cited, { next: { revalidate: 86400 }, headers }).then((res) => res.json()),
+    fetch(recent, { next: { revalidate: 86400 }, headers }).then((res) => res.json()),
+  ])
+  return {
+    mostCited: oaNormalize(c.results ?? []),
+    mostRecent: oaNormalize(r.results ?? []),
+  }
 }
 
-async function loadFallback(): Promise<ScholarData> {
+async function loadFallback(): Promise<{ mostRecent: Publication[]; mostCited: Publication[] }> {
   try {
     const filePath = path.join(process.cwd(), "data", "publications.json")
     const raw = await readFile(filePath, "utf-8")
     const json = JSON.parse(raw) as {
-      mostRecent?: Array<Publication & { id: number }>
-      mostCited?: Array<Publication & { id: number }>
-      lastUpdated?: string
+      mostRecent?: Array<Publication & { id: number | string }>
+      mostCited?: Array<Publication & { id: number | string }>
     }
-    const toPub = (p: Publication & { id: number | string }) => ({
-      ...p,
-      id: String(p.id),
-    })
-    const mostRecent = (json.mostRecent ?? []).map(toPub)
-    const mostCited = (json.mostCited ?? []).map(toPub)
+    const toPub = (p: Publication & { id: number | string }) => ({ ...p, id: String(p.id) })
     return {
-      stats: {
-        citations: SCHOLAR_CITATIONS,
-        hIndex: SCHOLAR_H_INDEX,
-        publications: 351,
-        yearsAtUCI: new Date().getFullYear() - UCI_START_YEAR,
-      },
-      mostRecent,
-      mostCited,
-      updatedAt: json.lastUpdated ?? new Date().toISOString(),
-      source: "fallback",
+      mostRecent: (json.mostRecent ?? []).map(toPub),
+      mostCited: (json.mostCited ?? []).map(toPub),
     }
   } catch {
-    return {
-      stats: {
-        citations: SCHOLAR_CITATIONS,
-        hIndex: SCHOLAR_H_INDEX,
-        publications: 351,
-        yearsAtUCI: new Date().getFullYear() - UCI_START_YEAR,
-      },
-      mostRecent: [],
-      mostCited: [],
-      updatedAt: new Date().toISOString(),
-      source: "fallback",
-    }
+    return { mostRecent: [], mostCited: [] }
   }
 }
 
 export async function getScholarData(): Promise<ScholarData> {
+  // 1. Try Google Scholar (real citation counts)
   try {
-    const [author, recent, cited] = await Promise.all([
-      fetchJSON<OpenAlexAuthor>(`${OPENALEX_BASE}/authors/${OPENALEX_AUTHOR_ID}`),
-      fetchJSON<{ results: OpenAlexWork[] }>(
-        `${OPENALEX_BASE}/works?filter=authorships.author.id:${OPENALEX_AUTHOR_ID}&sort=publication_date:desc&per_page=6&select=${SELECT_FIELDS}`,
-      ),
-      fetchJSON<{ results: OpenAlexWork[] }>(
-        `${OPENALEX_BASE}/works?filter=authorships.author.id:${OPENALEX_AUTHOR_ID}&sort=cited_by_count:desc&per_page=6&select=${SELECT_FIELDS}`,
-      ),
-    ])
-
+    const pubs = await getScholarPublications()
     return {
-      stats: {
-        citations: SCHOLAR_CITATIONS,
-        hIndex: SCHOLAR_H_INDEX,
-        publications: author.works_count ?? 351,
-        yearsAtUCI: new Date().getFullYear() - UCI_START_YEAR,
-      },
-      mostRecent: normalize(recent.results),
-      mostCited: normalize(cited.results),
+      mostCited: pubs.mostCited,
+      mostRecent: pubs.mostRecent,
+      updatedAt: new Date().toISOString(),
+      source: "scholar",
+    }
+  } catch (err) {
+    console.warn("[scholar] Scholar scrape failed, trying OpenAlex:", err)
+  }
+
+  // 2. Fall back to OpenAlex (numbers undercount but always available)
+  try {
+    const pubs = await getOpenAlexPublications()
+    return {
+      mostCited: pubs.mostCited,
+      mostRecent: pubs.mostRecent,
       updatedAt: new Date().toISOString(),
       source: "openalex",
     }
   } catch (err) {
-    console.error("[scholar] OpenAlex fetch failed, using fallback:", err)
-    return loadFallback()
+    console.warn("[scholar] OpenAlex fetch failed, using static fallback:", err)
+  }
+
+  // 3. Final fallback to bundled JSON
+  const local = await loadFallback()
+  return {
+    mostCited: local.mostCited,
+    mostRecent: local.mostRecent,
+    updatedAt: new Date().toISOString(),
+    source: "fallback",
   }
 }
 
